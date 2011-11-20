@@ -1,0 +1,5 @@
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\bin\Debug\CaptureTestConsole.exe
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\bin\Debug\CaptureTestConsole.pdb
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.exe
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.pdb
