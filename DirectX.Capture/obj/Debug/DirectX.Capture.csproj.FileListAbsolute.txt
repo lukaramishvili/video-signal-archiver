@@ -1,0 +1,7 @@
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DirectX.Capture\bin\Debug\DirectX.Capture.dll
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DirectX.Capture\bin\Debug\DirectX.Capture.pdb
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DirectX.Capture\bin\Debug\DShowNET.dll
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DirectX.Capture\bin\Debug\DShowNET.pdb
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DirectX.Capture\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DirectX.Capture\obj\Debug\DirectX.Capture.dll
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DirectX.Capture\obj\Debug\DirectX.Capture.pdb

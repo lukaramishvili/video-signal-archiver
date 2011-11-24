@@ -3,3 +3,7 @@ D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsol
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\bin\Debug\CaptureTestConsole.pdb
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.exe
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.pdb
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\bin\Debug\DirectX.Capture.dll
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\bin\Debug\DShowNET.dll
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\bin\Debug\DirectX.Capture.pdb
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\bin\Debug\DShowNET.pdb

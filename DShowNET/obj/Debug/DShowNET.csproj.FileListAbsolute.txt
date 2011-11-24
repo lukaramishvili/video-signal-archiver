@@ -1,0 +1,5 @@
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\bin\Debug\DShowNET.dll
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\bin\Debug\DShowNET.pdb
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\obj\Debug\DShowNET.dll
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\obj\Debug\DShowNET.pdb
