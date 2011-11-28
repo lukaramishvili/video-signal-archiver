@@ -3,3 +3,8 @@ D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\bin\Debu
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\obj\Debug\ResolveAssemblyReference.cache
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\obj\Debug\DShowNET.dll
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\DShowNET\obj\Debug\DShowNET.pdb
+D:\project\CaptureTestConsole\Archiving\DShowNET\bin\Debug\DShowNET.dll
+D:\project\CaptureTestConsole\Archiving\DShowNET\bin\Debug\DShowNET.pdb
+D:\project\CaptureTestConsole\Archiving\DShowNET\obj\Debug\ResolveAssemblyReference.cache
+D:\project\CaptureTestConsole\Archiving\DShowNET\obj\Debug\DShowNET.dll
+D:\project\CaptureTestConsole\Archiving\DShowNET\obj\Debug\DShowNET.pdb

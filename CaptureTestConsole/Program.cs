@@ -10,24 +10,28 @@ using System.Timers;
 
 namespace CaptureTestConsole
 {
-    public class VideoCaptureController
+    public static class VideoCaptureController
     {
         private static Capture capture = null;
+        //this line throws exception
         private static Filters filters = new Filters();
 
-        public bool StartRecording(string sFileName)
+        public static bool StartRecording(string sFileName)
         {
-            if (true == capture.Capturing)
+            //if (null != capture)
             {
-                capture.Stop();
+                //if (true == capture.Capturing)
+                {
+                    //capture.Stop();
+                }
             }
-            capture = new Capture(filters.VideoInputDevices[0], filters.AudioInputDevices[0]);
-            capture.CaptureComplete += new EventHandler(OnCaptureComplete);
-            capture.Filename = sFileName;
-            capture.Start();
+            //capture = new Capture(filters.VideoInputDevices[0], null);
+            //capture.CaptureComplete += new EventHandler(OnCaptureComplete);
+            //capture.Filename = sFileName;
+            //capture.Start();
             return true;
         }
-        private void OnCaptureComplete(object sender, EventArgs e)
+        private static void OnCaptureComplete(object sender, EventArgs e)
         {
         }
     }
@@ -51,7 +55,7 @@ namespace CaptureTestConsole
                 string[] arrBoloStriqonisMonacemebi = lsAllLines[lsAllLines.Length - 1].Split(',');
                 sGadacemisSaxeliLastTime = arrBoloStriqonisMonacemebi[4];
                 //todo guess name from arrBoloStriqonisMonacemebi[4]
-                sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4];
+                sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\'));
                 dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
                                                                     , @"dd\/M\/yyyy HH:mm:ss"
                                                                     , CultureProvider);
@@ -66,6 +70,8 @@ namespace CaptureTestConsole
         }
         static void Main(string[] args)
         {
+            //VideoCaptureController capturer = new VideoCaptureController();
+            //
             System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3000);
             timerResetCheckOrNot.Elapsed += delegate(object sender, ElapsedEventArgs e)
             {
@@ -75,6 +81,12 @@ namespace CaptureTestConsole
                 {
                     Console.WriteLine("new capture {0} at {1}", sAxaliGadacemisSaxeli, dtAxaliGadacemisDackebisDro);
                     //call capture
+                    //move file related code to StartCapture?
+                    if (false == Directory.Exists("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf("."))))
+                    {
+                    }
+                    VideoCaptureController.StartRecording("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")) + "\\" + sAxaliGadacemisSaxeli);
+                    //
                 }
                 else
                 {
