@@ -84,6 +84,7 @@ namespace CaptureTestConsole
                     //move file related code to StartCapture?
                     if (false == Directory.Exists("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf("."))))
                     {
+                        Directory.CreateDirectory("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")));
                     }
                     VideoCaptureController.StartRecording("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")) + "\\" + sAxaliGadacemisSaxeli);
                     //
