@@ -58,7 +58,7 @@ namespace CaptureTestConsole
                 string[] arrBoloStriqonisMonacemebi = lsAllLines[lsAllLines.Length - 1].Split(',');
                 sGadacemisSaxeliLastTime = arrBoloStriqonisMonacemebi[4];
                 //todo guess name from arrBoloStriqonisMonacemebi[4]
-                sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\'));
+                sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\')+1);
                 dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
                                                                     , @"dd\/M\/yyyy HH:mm:ss"
                                                                     , CultureProvider);
@@ -108,7 +108,7 @@ namespace CaptureTestConsole
                         Directory.CreateDirectory(sDirName);
                     }
                     //call capture
-                    VideoCaptureController.StartRecording(sDirName + sGadacemaName);
+                    VideoCaptureController.StartRecording(sDirName + sFileName);
                     //
                 }
                 else
