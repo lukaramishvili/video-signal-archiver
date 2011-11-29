@@ -18,17 +18,17 @@ namespace CaptureTestConsole
 
         public static bool StartRecording(string sFileName)
         {
-            //if (null != capture)
+            if (null != capture)
             {
-                //if (true == capture.Capturing)
+                if (true == capture.Capturing)
                 {
-                    //capture.Stop();
+                    capture.Stop();
                 }
             }
-            //capture = new Capture(filters.VideoInputDevices[0], null);
-            //capture.CaptureComplete += new EventHandler(OnCaptureComplete);
-            //capture.Filename = sFileName;
-            //capture.Start();
+            capture = new Capture(filters.VideoInputDevices[0], null);
+            capture.CaptureComplete += new EventHandler(OnCaptureComplete);
+            capture.Filename = sFileName;
+            capture.Start();
             return true;
         }
         private static void OnCaptureComplete(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace CaptureTestConsole
         }
         static void Main(string[] args)
         {
-            //VideoCaptureController capturer = new VideoCaptureController();
+            ////VideoCaptureController capturer = new VideoCaptureController();
             //
             System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3000);
             timerResetCheckOrNot.Elapsed += delegate(object sender, ElapsedEventArgs e)
