@@ -13,9 +13,9 @@ namespace CaptureTestConsole
     public static class VideoCaptureController
     {
         private static Capture capture = null;
-        //this line throws exception
         private static Filters filters = new Filters();
 
+        //
         public static bool StartRecording(string sFileName)
         {
             if (null != capture)
@@ -37,6 +37,9 @@ namespace CaptureTestConsole
     }
     class Program
     {
+        //
+        private static string sMainDir = "C:\\";
+        //
         public static CultureInfo CultureProvider = CultureInfo.InvariantCulture;
         //
         private static int unLineCountLastTime = 0;
@@ -80,13 +83,32 @@ namespace CaptureTestConsole
                 if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro))
                 {
                     Console.WriteLine("new capture {0} at {1}", sAxaliGadacemisSaxeli, dtAxaliGadacemisDackebisDro);
-                    //call capture
-                    //move file related code to StartCapture?
-                    if (false == Directory.Exists("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf("."))))
+                    //
+                    string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
+                        ? sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.IndexOf("_"))
+                        //:"undefined";
+                        : sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")).Replace(" ","");
+                    string sFileName = add_zeros(dtAxaliGadacemisDackebisDro.Hour.ToString())
+                        + "-" + add_zeros(dtAxaliGadacemisDackebisDro.Minute.ToString())
+                        + "-" + sGadacemaName
+                        + ".avi";
+                    string sDirName = sMainDir + dtAxaliGadacemisDackebisDro.Year + "\\";
+                    if (false == Directory.Exists(sDirName))
                     {
-                        Directory.CreateDirectory("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")));
+                        Directory.CreateDirectory(sDirName);
                     }
-                    VideoCaptureController.StartRecording("C:\\" + sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")) + "\\" + sAxaliGadacemisSaxeli);
+                    sDirName += add_zeros(dtAxaliGadacemisDackebisDro.Month.ToString()) + "\\";
+                    if (false == Directory.Exists(sDirName))
+                    {
+                        Directory.CreateDirectory(sDirName);
+                    }
+                    sDirName += add_zeros(dtAxaliGadacemisDackebisDro.Day.ToString()) + "\\";
+                    if (false == Directory.Exists(sDirName))
+                    {
+                        Directory.CreateDirectory(sDirName);
+                    }
+                    //call capture
+                    VideoCaptureController.StartRecording(sDirName + sGadacemaName);
                     //
                 }
                 else
@@ -97,6 +119,11 @@ namespace CaptureTestConsole
             timerResetCheckOrNot.Start();
             Console.ReadLine();
             //
+        }
+
+        public static string add_zeros(string s)
+        {
+            return s.Length > 1 ? s : "0" + s;
         }
     }
 }
