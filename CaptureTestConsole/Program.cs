@@ -20,9 +20,11 @@ namespace CaptureTestConsole
         {
             if (null != capture)
             {
+                //no need to ckeck, capture.Stop() will work anyway
                 if (true == capture.Capturing)
                 {
                     capture.Stop();
+                    capture.Dispose();
                 }
             }
             capture = new Capture(filters.VideoInputDevices[0], null);
