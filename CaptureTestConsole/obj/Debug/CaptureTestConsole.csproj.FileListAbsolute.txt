@@ -16,3 +16,5 @@ D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Debug\DShowNET.dl
 D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Debug\DirectX.Capture.pdb
 D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Debug\DShowNET.pdb
 D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.RecorderController.resources
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.csproj.GenerateResource.Cache
