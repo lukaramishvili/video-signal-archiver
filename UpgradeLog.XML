@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="CaptureTestConsole">
+</Property><Property Name="Solution File" Value="D:\project\CaptureTestConsole\Archiving\CaptureTestConsole.sln">
+</Property><Property Name="User Options File" Value="D:\project\CaptureTestConsole\Archiving\CaptureTestConsole.suo">
+</Property><Property Name="Date" Value="Wednesday, December 07, 2011">
+</Property><Property Name="Time" Value="20:25 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="CaptureTestConsole.sln" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole.sln">
+</Event><Event ErrorLevel="0" Project="" Source="CaptureTestConsole.suo" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole.suo">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\CaptureTestConsole.csproj" Description="Project file successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\CaptureTestConsole.csproj">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\CaptureTestConsole.csproj.user" Description="Project user file successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\CaptureTestConsole.csproj.user">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\Program.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\Program.cs">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\Properties\Resources.Designer.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\RecorderController.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\RecorderController.cs">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\RecorderController.Designer.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\RecorderController.Designer.cs">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\Resources\stopplay.png" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\Resources\stopplay.png">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\Resources\stopplay_mini.png" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\Resources\stopplay_mini.png">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\Resources\green_light_still.png" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\Resources\green_light_still.png">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\Properties\Resources.resx" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\RecorderController.resx" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\CaptureTestConsole\RecorderController.resx">
+</Event><Event ErrorLevel="0" Project="CaptureTestConsole" Source="CaptureTestConsole\CaptureTestConsole.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="CaptureTestConsole" Source="CaptureTestConsole\CaptureTestConsole.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DShowNET.csproj" Description="Project file successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DShowNET.csproj">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DShowNET.csproj.user" Description="Project user file successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DShowNET.csproj.user">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\AssemblyInfo.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsBugWO.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsBugWO.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsControl.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsControl.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsCore.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsCore.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsDevice.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsDevice.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsDVD.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsDVD.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsExtend.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsExtend.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsUtils.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsUtils.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsUuids.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsUuids.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsVmr9.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsVmr9.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DsVmRender.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\DsVmRender.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\QEdit.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DShowNET\QEdit.cs">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="DShowNET\DShowNET.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="DShowNET" Source="DShowNET\DShowNET.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\DirectX.Capture.csproj" Description="Project file successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\DirectX.Capture.csproj">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\DirectX.Capture.csproj.user" Description="Project user file successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\DirectX.Capture.csproj.user">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\AssemblyInfo.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\AudioCapabilities.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\AudioCapabilities.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\AudioSource.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\AudioSource.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\Capture.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\Capture.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\CrossbarSource.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\CrossbarSource.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\DeviceInUseException.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\DeviceInUseException.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\DirectShowPropertyPage.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\DirectShowPropertyPage.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\Filter.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\Filter.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\FilterCollection.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\FilterCollection.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\Filters.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\Filters.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\PropertyPage.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\PropertyPage.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\PropertyPageCollection.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\PropertyPageCollection.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\Source.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\Source.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\SourceCollection.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\SourceCollection.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\Tuner.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\Tuner.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\VfwCompressorPropertyPage.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\VfwCompressorPropertyPage.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\VideoCapabilities.cs" Description="File successfully backed up as D:\project\CaptureTestConsole\Archiving\Backup\DirectX.Capture\VideoCapabilities.cs">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="DirectX.Capture\DirectX.Capture.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="DirectX.Capture" Source="DirectX.Capture\DirectX.Capture.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="CaptureTestConsole.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="CaptureTestConsole.sln" Description="Converted">
+</Event></UpgradeLog>

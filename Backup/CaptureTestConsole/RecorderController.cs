@@ -31,7 +31,7 @@ namespace CaptureTestConsole
         public static bool nextCSVResult(out string sShemdegiGadacemisSaxeli
                                         , out DateTime dtAxaliGadacemisDackebisDro)
         {
-            string[] lsAllLines = File.ReadAllLines(File.ReadAllText(VideoCaptureController.sFileContainingInfoAboutCSVFilePath));
+            string[] lsAllLines = File.ReadAllLines("../OAStudioLog20111101.csv");
             if (lsAllLines.Length > unLineCountLastTime && sGadacemisSaxeliLastTime != lsAllLines[lsAllLines.Length - 1].Split(',')[4])
             {
                 unLineCountLastTime = lsAllLines.Length;
@@ -84,9 +84,6 @@ namespace CaptureTestConsole
             };
             timerResetCheckOrNot.Start();
             //
-            txtPathToCSV.Text = File.ReadAllText(VideoCaptureController.sFileContainingInfoAboutCSVFilePath);
-            LoadChosenDayFromDatabase();
-            //
         }
 
         //creates needed folders and returns formatted file name
@@ -118,66 +115,6 @@ namespace CaptureTestConsole
             if (0 < txtNextGadacemaName.Text.Length)
             {
                 VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(txtNextGadacemaName.Text, DateTime.Now));
-            }
-        }
-
-        private void btnChooseCSVFile_Click(object sender, EventArgs e)
-        {
-            dlgChooseCSVFile.ShowDialog();
-        }
-
-        private void dlgChooseCSVFile_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (File.Exists(dlgChooseCSVFile.FileName))
-            {
-                string[] arrsNewCSVContents = File.ReadAllLines(dlgChooseCSVFile.FileName);
-                if (6 > arrsNewCSVContents[0].Count(w => ',' == w))
-                {
-                    MessageBox.Show("არჩეულ ფაილში მინიმუმ 6 სვეტი უნდა იყოს!");
-                    e.Cancel = true;
-                }
-                else
-                {
-                    //file is valid
-                    VideoCaptureController.EnsureWeHaveAFileWithCSVPathInIt(dlgChooseCSVFile.FileName);
-                    txtPathToCSV.Text = dlgChooseCSVFile.FileName;
-                }
-            }
-            else
-            {
-                MessageBox.Show("მოხდა შეცდომა. ფაილი არ არსებობს!");
-            }
-        }
-
-        public void LoadChosenDayFromDatabase()
-        {
-            MessageBox.Show(String.Format("Load database for day {0}",dttChooseDay.Value));
-        }
-
-        public bool SaveChosenDayToDatabase()
-        {
-            MessageBox.Show(String.Format("If entered datetime da gadacemis saxeli is correctly formatted,\n"
-                                            + "Then save gadacemebis database for day {0}", dttChooseDay.Value));
-            return true;
-        }
-
-        private void dttChooseDay_ValueChanged(object sender, EventArgs e)
-        {
-            if (DialogResult.Yes == MessageBox.Show("დაუმახსოვრებელი ცვლილებები დაიკარგება. გსურთ გააგრძელოთ?","დადასტურება",MessageBoxButtons.YesNo))
-            {
-                MessageBox.Show("სხვა დღეს ვირჩევთ!");
-            }
-        }
-
-        private void btnSaveGadacemebiToDatabase_Click(object sender, EventArgs e)
-        {
-            if (true == SaveChosenDayToDatabase())
-            {
-                MessageBox.Show("გადაცემების სიის მონაცემთა ბაზაში შენახვა წარმატებით დასრულდა!");
-            }
-            else
-            {
-                MessageBox.Show("მონაცემების შენახვა არ მოხერხდა. გთხოვთ გაასწოროთ შეცდომები და სცადოთ თავიდან!");
             }
         }
     }

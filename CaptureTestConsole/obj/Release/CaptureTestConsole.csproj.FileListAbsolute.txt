@@ -1,0 +1,12 @@
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Release\CaptureTestConsole.exe
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Release\CaptureTestConsole.pdb
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Release\DirectX.Capture.dll
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Release\DShowNET.dll
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Release\DirectX.Capture.xml
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\ResolveAssemblyReference.cache
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\CaptureTestConsole.Properties.Resources.resources
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\CaptureTestConsole.RecorderController.resources
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\GenerateResource-ResGen.read.1.tlog
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\GenerateResource-ResGen.write.1.tlog
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\CaptureTestConsole.exe
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\CaptureTestConsole.pdb

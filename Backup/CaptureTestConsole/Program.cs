@@ -16,7 +16,6 @@ namespace CaptureTestConsole
         private static Capture capture = null;
         private static Filters filters = new Filters();
 
-        public static string sFileContainingInfoAboutCSVFilePath = "../csvfilepath.txt";
         //
         public static bool StartRecording(string sFileName)
         {
@@ -39,35 +38,12 @@ namespace CaptureTestConsole
         private static void OnCaptureComplete(object sender, EventArgs e)
         {
         }
-
-        public static bool EnsureWeHaveAFileWithCSVPathInIt(string sNewCSVPath = null)
-        {
-            if (null != sNewCSVPath && false == File.Exists(sNewCSVPath))
-            {
-                return false;
-            }
-            if (false == File.Exists(sFileContainingInfoAboutCSVFilePath))
-            {
-                File.WriteAllText(sFileContainingInfoAboutCSVFilePath, sNewCSVPath ?? "../OAStudioLog20111101.csv");
-                return true;
-            }
-            else
-            {
-                if (null != sNewCSVPath)
-                {
-                    File.WriteAllText(sFileContainingInfoAboutCSVFilePath, sNewCSVPath);
-                }
-                return true;
-            }
-        }
     }
     class Program
     {
         [STAThread]
         static void Main(string[] args)
         {
-            VideoCaptureController.EnsureWeHaveAFileWithCSVPathInIt();
-
             RecorderController frmRecorderController = new RecorderController();
             Application.EnableVisualStyles();
             Application.Run(frmRecorderController);
