@@ -18,3 +18,4 @@ D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Debug\DShowNET.pd
 D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Debug\ResolveAssemblyReference.cache
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.RecorderController.resources
 D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.csproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2008\Projects\CaptureTestConsole\CaptureTestConsole\obj\Debug\CaptureTestConsole.Properties.Resources.resources
