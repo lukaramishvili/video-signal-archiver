@@ -1,0 +1,9 @@
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Release\ResolveAssemblyReference.cache
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Release\ArchivingDatabaseManager.Form1.resources
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Release\ArchivingDatabaseManager.Properties.Resources.resources
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Release\GenerateResource.read.1.tlog
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Release\GenerateResource.write.1.tlog
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\bin\Release\ArchivingDatabaseManager.exe
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\bin\Release\ArchivingDatabaseManager.pdb
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Release\ArchivingDatabaseManager.exe
+D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Release\ArchivingDatabaseManager.pdb

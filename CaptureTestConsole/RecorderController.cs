@@ -23,7 +23,7 @@ namespace CaptureTestConsole
         //
         public static CultureInfo CultureProvider = CultureInfo.InvariantCulture;
         //
-        public static MySqlConnection sqlConn = new MySqlConnection("Server=luka.ge;Database=d250879_imedi;Uid=d250879_nonpriv;Pwd=hard3ord;");
+        public static MySqlConnection sqlConn = new MySqlConnection("Server=localhost;Database=d250879_imedi;Uid=d250879_nonpriv;Pwd=hard3ord;");
         //
         private static int unLineCountLastTime = 0;
         private static string sGadacemisSaxeliLastTime = "";
@@ -118,7 +118,6 @@ namespace CaptureTestConsole
             sqlConn.Open();
             //
             txtPathToCSV.Text = File.ReadAllText(VideoCaptureController.sFileContainingInfoAboutCSVFilePath);
-            LoadChosenDayFromDatabase();
             //
         }
 
@@ -184,38 +183,6 @@ namespace CaptureTestConsole
             else
             {
                 MessageBox.Show("მოხდა შეცდომა. ფაილი არ არსებობს!");
-            }
-        }
-
-        public void LoadChosenDayFromDatabase()
-        {
-            MessageBox.Show(String.Format("Load database for day {0}",dttChooseDay.Value));
-        }
-
-        public bool SaveChosenDayToDatabase()
-        {
-            MessageBox.Show(String.Format("If entered datetime da gadacemis saxeli is correctly formatted,\n"
-                                            + "Then save gadacemebis database for day {0}", dttChooseDay.Value));
-            return true;
-        }
-
-        private void dttChooseDay_ValueChanged(object sender, EventArgs e)
-        {
-            if (DialogResult.Yes == MessageBox.Show("დაუმახსოვრებელი ცვლილებები დაიკარგება. გსურთ გააგრძელოთ?","დადასტურება",MessageBoxButtons.YesNo))
-            {
-                MessageBox.Show("სხვა დღეს ვირჩევთ!");
-            }
-        }
-
-        private void btnSaveGadacemebiToDatabase_Click(object sender, EventArgs e)
-        {
-            if (true == SaveChosenDayToDatabase())
-            {
-                MessageBox.Show("გადაცემების სიის მონაცემთა ბაზაში შენახვა წარმატებით დასრულდა!");
-            }
-            else
-            {
-                MessageBox.Show("მონაცემების შენახვა არ მოხერხდა. გთხოვთ გაასწოროთ შეცდომები და სცადოთ თავიდან!");
             }
         }
     }
