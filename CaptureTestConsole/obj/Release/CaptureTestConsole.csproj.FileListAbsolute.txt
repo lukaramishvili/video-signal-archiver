@@ -10,3 +10,6 @@ D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\GenerateR
 D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\GenerateResource-ResGen.write.1.tlog
 D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\CaptureTestConsole.exe
 D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\CaptureTestConsole.pdb
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\bin\Release\CaptureTestConsole.exe.config
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\GenerateResource.read.1.tlog
+D:\project\CaptureTestConsole\Archiving\CaptureTestConsole\obj\Release\GenerateResource.write.1.tlog

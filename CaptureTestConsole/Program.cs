@@ -8,6 +8,7 @@ using System.Globalization;
 using DirectX.Capture;
 using System.Timers;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace CaptureTestConsole
 {
