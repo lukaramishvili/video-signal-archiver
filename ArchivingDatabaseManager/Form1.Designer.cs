@@ -1,6 +1,6 @@
 ﻿namespace ArchivingDatabaseManager
 {
-    partial class Form1
+    partial class frmGadacemebisMartva
     {
         /// <summary>
         /// Required designer variable.
@@ -100,14 +100,14 @@
             this.dttChooseDay.Size = new System.Drawing.Size(200, 20);
             this.dttChooseDay.TabIndex = 9;
             // 
-            // Form1
+            // frmGadacemebisMartva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 558);
             this.Controls.Add(this.panel_main);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmGadacemebisMartva";
+            this.Text = "გადაცემების მართვა";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel_main.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -48,7 +48,11 @@ namespace CaptureTestConsole
             }
             if (false == File.Exists(sFileContainingInfoAboutCSVFilePath))
             {
-                File.WriteAllText(sFileContainingInfoAboutCSVFilePath, sNewCSVPath ?? "../OAStudioLog20111101.csv");
+                File.WriteAllText(sFileContainingInfoAboutCSVFilePath, sNewCSVPath ?? "../OAStudioLog"
+                                                                                        + DateTime.Now.Year.ToString()
+                                                                                        + RecorderController.add_zeros(DateTime.Now.Month.ToString())
+                                                                                        + RecorderController.add_zeros(DateTime.Now.Day.ToString())
+                                                                                        +".csv");
                 return true;
             }
             else

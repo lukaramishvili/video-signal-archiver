@@ -10,13 +10,13 @@ using MySql.Data.MySqlClient;
 
 namespace ArchivingDatabaseManager
 {
-    public partial class Form1 : Form
+    public partial class frmGadacemebisMartva : Form
     {
-        public Form1()
+        public frmGadacemebisMartva()
         {
             InitializeComponent();
         }
-        public static MySqlConnection sqlConn = new MySqlConnection("Server=localhost;Database=d250879_imedi;Uid=d250879_nonpriv;Pwd=hard3ord;");
+        public static MySqlConnection sqlConn = new MySqlConnection("Server=localhost;Database=imedi_db;Uid=root;Pwd=hard3ord;");
 
         public void LoadChosenDayFromDatabase()
         {

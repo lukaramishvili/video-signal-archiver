@@ -23,7 +23,7 @@ namespace CaptureTestConsole
         //
         public static CultureInfo CultureProvider = CultureInfo.InvariantCulture;
         //
-        public static MySqlConnection sqlConn = new MySqlConnection("Server=localhost;Database=d250879_imedi;Uid=d250879_nonpriv;Pwd=hard3ord;");
+        public static MySqlConnection sqlConn = new MySqlConnection("Server=localhost;Database=imedi_db;Uid=root;Pwd=hard3ord;");
         //
         private static int unLineCountLastTime = 0;
         private static string sGadacemisSaxeliLastTime = "";
@@ -67,15 +67,20 @@ namespace CaptureTestConsole
             GadacemisSaxeli = "";
             dttStartTime = DateTime.Now;
             //
-            MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacemebi WHERE dttStartTime < NOW()"
+            MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacema WHERE dttStartTime < NOW()"
                                                     + "AND dttEndTime > NOW()"
                                                     + "AND sGadacemisSaxeli != '" + sNowPlaying.Replace("'","").Replace("\"","") + "';"
                                                   ,sqlConn);
             MySqlDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
-                GadacemisSaxeli = (string)reader["sGadacemisSaxeli"];
-                dttStartTime = (DateTime)reader["dttEndTime"];
+                if (sNowPlaying != (string)reader["sGadacemisSaxeli"])
+                {
+                    recordsFound = true;
+                    GadacemisSaxeli = (string)reader["sGadacemisSaxeli"];
+                    dttStartTime = (DateTime)reader["dttStartTime"];
+                    //dttEndTime = (DateTime)reader["dttEndTime"];
+                }
                 break;
             }
             reader.Close();
@@ -104,6 +109,18 @@ namespace CaptureTestConsole
                         ? sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.IndexOf("_"))
                         //:"undefined";
                         : sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")).Replace(" ", "");
+                    //call capture
+                    VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
+                    //
+                }
+                else if (true == isThereGadacemebiForNow(sGadacemisSaxeliLastTime, out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro))
+                {
+                    //
+                    //string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
+                    //    ? sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.IndexOf("_"))
+                    //    //:"undefined";
+                    //    : sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")).Replace(" ", "");
+                    string sGadacemaName = sAxaliGadacemisSaxeli;
                     //call capture
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
                     //
