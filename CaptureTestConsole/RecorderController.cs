@@ -8,6 +8,7 @@ using System.Globalization;
 using DirectX.Capture;
 using System.Timers;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace CaptureTestConsole
 {
@@ -21,6 +22,8 @@ namespace CaptureTestConsole
         private static string sMainDir = "C:\\";
         //
         public static CultureInfo CultureProvider = CultureInfo.InvariantCulture;
+        //
+        public static MySqlConnection sqlConn = new MySqlConnection("Server=luka.ge;Database=d250879_imedi;Uid=d250879_nonpriv;Pwd=hard3ord;");
         //
         private static int unLineCountLastTime = 0;
         private static string sGadacemisSaxeliLastTime = "";
@@ -52,6 +55,33 @@ namespace CaptureTestConsole
             }
         }
 
+        /// <summary>
+        /// Pseudocode, but structure is correct, only modify variable names and SQL command text
+        /// </summary>
+        /// <param name="GadacemisSaxeli"></param>
+        /// <param name="dttStartTime"></param>
+        /// <returns></returns>
+        public static bool isThereGadacemebiForNow(string sNowPlaying, out string GadacemisSaxeli, out DateTime dttStartTime)
+        {
+            bool recordsFound = false;
+            GadacemisSaxeli = "";
+            dttStartTime = DateTime.Now;
+            //
+            MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacemebi WHERE dttStartTime < NOW()"
+                                                    + "AND dttEndTime > NOW()"
+                                                    + "AND sGadacemisSaxeli != '" + sNowPlaying.Replace("'","").Replace("\"","") + "';"
+                                                  ,sqlConn);
+            MySqlDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                GadacemisSaxeli = (string)reader["sGadacemisSaxeli"];
+                dttStartTime = (DateTime)reader["dttEndTime"];
+                break;
+            }
+            reader.Close();
+            return recordsFound;
+        }
+
         public static string add_zeros(string s)
         {
             return s.Length > 1 ? s : "0" + s;
@@ -59,6 +89,7 @@ namespace CaptureTestConsole
 
         private void RecorderController_Load(object sender, EventArgs e)
         {
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             ////VideoCaptureController capturer = new VideoCaptureController();
             //
             System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3000);
@@ -84,9 +115,16 @@ namespace CaptureTestConsole
             };
             timerResetCheckOrNot.Start();
             //
+            sqlConn.Open();
+            //
             txtPathToCSV.Text = File.ReadAllText(VideoCaptureController.sFileContainingInfoAboutCSVFilePath);
             LoadChosenDayFromDatabase();
             //
+        }
+
+        void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            sqlConn.Close();
         }
 
         //creates needed folders and returns formatted file name
