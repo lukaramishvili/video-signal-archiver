@@ -30,19 +30,19 @@
         {
             this.panel_main = new System.Windows.Forms.Panel();
             this.btnSaveGadacemebiToDatabase = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvDgisPrograma = new System.Windows.Forms.DataGridView();
             this.colStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGadacemisSaxeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dttChooseDay = new System.Windows.Forms.DateTimePicker();
             this.panel_main.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDgisPrograma)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_main
             // 
             this.panel_main.Controls.Add(this.btnSaveGadacemebiToDatabase);
-            this.panel_main.Controls.Add(this.dataGridView1);
+            this.panel_main.Controls.Add(this.dgvDgisPrograma);
             this.panel_main.Controls.Add(this.dttChooseDay);
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_main.Location = new System.Drawing.Point(0, 0);
@@ -62,18 +62,18 @@
             this.btnSaveGadacemebiToDatabase.UseVisualStyleBackColor = true;
             this.btnSaveGadacemebiToDatabase.Click += new System.EventHandler(this.btnSaveGadacemebiToDatabase_Click);
             // 
-            // dataGridView1
+            // dgvDgisPrograma
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDgisPrograma.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDgisPrograma.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colStartTime,
             this.colEndTime,
             this.colGadacemisSaxeli});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 40);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(806, 515);
-            this.dataGridView1.TabIndex = 10;
+            this.dgvDgisPrograma.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDgisPrograma.Location = new System.Drawing.Point(3, 40);
+            this.dgvDgisPrograma.Name = "dgvDgisPrograma";
+            this.dgvDgisPrograma.Size = new System.Drawing.Size(806, 515);
+            this.dgvDgisPrograma.TabIndex = 10;
             // 
             // colStartTime
             // 
@@ -99,6 +99,7 @@
             this.dttChooseDay.Name = "dttChooseDay";
             this.dttChooseDay.Size = new System.Drawing.Size(200, 20);
             this.dttChooseDay.TabIndex = 9;
+            this.dttChooseDay.ValueChanged += new System.EventHandler(this.dttChooseDay_ValueChanged);
             // 
             // frmGadacemebisMartva
             // 
@@ -109,8 +110,9 @@
             this.Name = "frmGadacemebisMartva";
             this.Text = "გადაცემების მართვა";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmGadacemebisMartva_Load);
             this.panel_main.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDgisPrograma)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -119,7 +121,7 @@
 
         private System.Windows.Forms.Panel panel_main;
         private System.Windows.Forms.Button btnSaveGadacemebiToDatabase;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvDgisPrograma;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEndTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGadacemisSaxeli;
