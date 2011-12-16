@@ -9,6 +9,8 @@ using DirectX.Capture;
 using System.Timers;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Net;
+using System.Net.Cache;
 
 namespace CaptureTestConsole
 {
@@ -19,7 +21,7 @@ namespace CaptureTestConsole
             InitializeComponent();
         }
         //
-        private static string sMainDir = "C:\\";
+        private static string sMainDir = "V:\\";
         //
         public static CultureInfo CultureProvider = CultureInfo.InvariantCulture;
         //
@@ -34,8 +36,23 @@ namespace CaptureTestConsole
         public static bool nextCSVResult(out string sShemdegiGadacemisSaxeli
                                         , out DateTime dtAxaliGadacemisDackebisDro)
         {
-            string[] lsAllLines = File.ReadAllLines(File.ReadAllText(VideoCaptureController.sFileContainingInfoAboutCSVFilePath));
-            if (lsAllLines.Length > unLineCountLastTime && sGadacemisSaxeliLastTime != lsAllLines[lsAllLines.Length - 1].Split(',')[4])
+            //string[] lsAllLines = File.ReadAllLines(File.ReadAllText(VideoCaptureController.sFileContainingInfoAboutCSVFilePath));
+
+            FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create("ftp://92.241.90.13/" + "OAStudioLog"
+                                                                                        + DateTime.Now.Year.ToString()
+                                                                                        + RecorderController.add_zeros(DateTime.Now.Month.ToString())
+                                                                                        + RecorderController.add_zeros(DateTime.Now.Day.ToString())
+                                                                                        + ".csv");
+            ftp.Credentials = new NetworkCredential("log", "log");
+            ftp.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);//nocachenostore?
+            System.Net.FtpWebResponse resp = (FtpWebResponse)ftp.GetResponse();
+            StreamReader csv = new StreamReader(resp.GetResponseStream(), Encoding.ASCII);
+            //
+            string[] lsAllLines = csv.ReadToEnd().Replace("\r", "").Split('\n');
+            if (lsAllLines.Length > unLineCountLastTime
+                && lsAllLines[lsAllLines.Length - 1].LastIndexOf(',') > lsAllLines[lsAllLines.Length - 1].IndexOf(',')
+                && ("RED" == lsAllLines[lsAllLines.Length - 1].Split(',')[1] || "PLAY" == lsAllLines[lsAllLines.Length - 1].Split(',')[1])
+                && sGadacemisSaxeliLastTime != lsAllLines[lsAllLines.Length - 1].Split(',')[4])
             {
                 unLineCountLastTime = lsAllLines.Length;
                 string[] arrBoloStriqonisMonacemebi = lsAllLines[lsAllLines.Length - 1].Split(',');
