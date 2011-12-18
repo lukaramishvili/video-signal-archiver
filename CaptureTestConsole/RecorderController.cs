@@ -71,12 +71,13 @@ namespace CaptureTestConsole
                 && sGadacemisSaxeliLastTime != lsAllLines[lastValidLineNum].Split(',')[4])
             {
                 unLineCountLastTime = lsAllLines.Length;
-                string[] arrBoloStriqonisMonacemebi = lsAllLines[lsAllLines.Length - 1].Split(',');
+                string[] arrBoloStriqonisMonacemebi = lsAllLines[lastValidLineNum].Split(',');
                 sGadacemisSaxeliLastTime = arrBoloStriqonisMonacemebi[4];
                 //todo guess name from arrBoloStriqonisMonacemebi[4]
                 sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\') + 1);
                 dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
-                                                                    , @"dd\/M\/yyyy HH:mm:ss"
+                                                                    //, @"dd\/M\/yyyy HH:mm:ss"
+                                                                    , @"M\/dd\/yyyy HH:mm:ss"
                                                                     , CultureProvider);
                 return true;
             }
@@ -131,6 +132,7 @@ namespace CaptureTestConsole
             ////VideoCaptureController capturer = new VideoCaptureController();
             //
             System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3000);
+            string sLastDatabaseOrCSVGadacemaName = "";
             timerResetCheckOrNot.Elapsed += delegate(object senderTimer, ElapsedEventArgs eTimer)
             {
                 string sAxaliGadacemisSaxeli;
@@ -142,11 +144,13 @@ namespace CaptureTestConsole
                         ? sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.IndexOf("_"))
                         //:"undefined";
                         : sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")).Replace(" ", "");
+                    sLastDatabaseOrCSVGadacemaName = sGadacemaName;
                     //call capture
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
                     //
                 }
-                else if (true == isThereGadacemebiForNow(sGadacemisSaxeliLastTime, out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro))
+                else if (true == isThereGadacemebiForNow(sGadacemisSaxeliLastTime, out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
+                    && sLastDatabaseOrCSVGadacemaName != sAxaliGadacemisSaxeli)
                 {
                     //
                     //string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
@@ -154,6 +158,7 @@ namespace CaptureTestConsole
                     //    //:"undefined";
                     //    : sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")).Replace(" ", "");
                     string sGadacemaName = sAxaliGadacemisSaxeli;
+                    sLastDatabaseOrCSVGadacemaName = sGadacemaName;
                     //call capture
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
                     //
@@ -196,6 +201,7 @@ namespace CaptureTestConsole
             }
             return sDirName + add_zeros(dtAxaliGadacemisDackebisDro.Hour.ToString())
                            + "-" + add_zeros(dtAxaliGadacemisDackebisDro.Minute.ToString())
+                           + "-" + add_zeros(dtAxaliGadacemisDackebisDro.Second.ToString())
                            + "-" + sGadacemaName
                            + ".avi";
         }
