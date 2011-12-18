@@ -49,10 +49,26 @@ namespace CaptureTestConsole
             StreamReader csv = new StreamReader(resp.GetResponseStream(), Encoding.ASCII);
             //
             string[] lsAllLines = csv.ReadToEnd().Replace("\r", "").Split('\n');
+            //
+            int lastValidLineNum = lsAllLines.Length - 1;
+            while ("" == lsAllLines[lastValidLineNum]
+                || lsAllLines[lastValidLineNum].Split(',').Length < 7
+                || "On Air Studio terminated" == lsAllLines[lastValidLineNum].Split(',')[6]
+                || (lsAllLines[lastValidLineNum].Split(',').Length > 7 && "Playback Stopped" == lsAllLines[lastValidLineNum].Split(',')[7])
+                || !(lsAllLines[lastValidLineNum].LastIndexOf(',') > lsAllLines[lastValidLineNum].IndexOf(','))
+                || !("RED" == lsAllLines[lastValidLineNum].Split(',')[1] || "PLAY" == lsAllLines[lastValidLineNum].Split(',')[1])
+                )
+            {
+                if(0 > lastValidLineNum){
+                    Console.WriteLine("CSV File not valid. Press any key to exit!");
+                    Console.ReadLine();
+                    Application.Exit();
+                    break;
+                }
+                lastValidLineNum--;
+            }
             if (lsAllLines.Length > unLineCountLastTime
-                && lsAllLines[lsAllLines.Length - 1].LastIndexOf(',') > lsAllLines[lsAllLines.Length - 1].IndexOf(',')
-                && ("RED" == lsAllLines[lsAllLines.Length - 1].Split(',')[1] || "PLAY" == lsAllLines[lsAllLines.Length - 1].Split(',')[1])
-                && sGadacemisSaxeliLastTime != lsAllLines[lsAllLines.Length - 1].Split(',')[4])
+                && sGadacemisSaxeliLastTime != lsAllLines[lastValidLineNum].Split(',')[4])
             {
                 unLineCountLastTime = lsAllLines.Length;
                 string[] arrBoloStriqonisMonacemebi = lsAllLines[lsAllLines.Length - 1].Split(',');
