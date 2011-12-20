@@ -75,10 +75,20 @@ namespace CaptureTestConsole
                 sGadacemisSaxeliLastTime = arrBoloStriqonisMonacemebi[4];
                 //todo guess name from arrBoloStriqonisMonacemebi[4]
                 sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\') + 1);
-                dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
-                                                                    //, @"dd\/M\/yyyy HH:mm:ss"
+                try
+                {
+                    dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
+                        //, @"dd\/M\/yyyy HH:mm:ss"
                                                                     , @"M\/dd\/yyyy HH:mm:ss"
                                                                     , CultureProvider);
+                }
+                catch (FormatException)
+                {
+                    dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
+                        //, @"dd\/M\/yyyy HH:mm:ss"
+                                                                    , @"dd\/M\/yyyy HH:mm:ss"
+                                                                    , CultureProvider);
+                }
                 return true;
             }
             else
@@ -240,6 +250,11 @@ namespace CaptureTestConsole
             {
                 MessageBox.Show("მოხდა შეცდომა. ფაილი არ არსებობს!");
             }
+        }
+
+        private void btn_stop_Click(object sender, EventArgs e)
+        {
+            VideoCaptureController.StopRecording();
         }
     }
 }

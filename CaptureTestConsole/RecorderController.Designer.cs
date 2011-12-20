@@ -30,6 +30,9 @@
         {
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.tab_recorder = new System.Windows.Forms.TabPage();
+            this.btnChooseCSVFile = new System.Windows.Forms.Button();
+            this.lblCSVFile = new System.Windows.Forms.Label();
+            this.txtPathToCSV = new System.Windows.Forms.TextBox();
             this.gpboxAxaliGadacema = new System.Windows.Forms.GroupBox();
             this.lblAxaliGadacema = new System.Windows.Forms.Label();
             this.btnStopAndStart = new System.Windows.Forms.Button();
@@ -37,9 +40,7 @@
             this.green_light = new System.Windows.Forms.PictureBox();
             this.tab_gadacemebi = new System.Windows.Forms.TabPage();
             this.dlgChooseCSVFile = new System.Windows.Forms.OpenFileDialog();
-            this.btnChooseCSVFile = new System.Windows.Forms.Button();
-            this.lblCSVFile = new System.Windows.Forms.Label();
-            this.txtPathToCSV = new System.Windows.Forms.TextBox();
+            this.btn_stop = new System.Windows.Forms.Button();
             this.tabContainer.SuspendLayout();
             this.tab_recorder.SuspendLayout();
             this.gpboxAxaliGadacema.SuspendLayout();
@@ -72,15 +73,42 @@
             this.tab_recorder.Text = "ვიდეოსიგნალი";
             this.tab_recorder.UseVisualStyleBackColor = true;
             // 
+            // btnChooseCSVFile
+            // 
+            this.btnChooseCSVFile.Location = new System.Drawing.Point(948, 14);
+            this.btnChooseCSVFile.Name = "btnChooseCSVFile";
+            this.btnChooseCSVFile.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseCSVFile.TabIndex = 10;
+            this.btnChooseCSVFile.Text = "არჩევა";
+            this.btnChooseCSVFile.UseVisualStyleBackColor = true;
+            this.btnChooseCSVFile.Click += new System.EventHandler(this.btnChooseCSVFile_Click);
+            // 
+            // lblCSVFile
+            // 
+            this.lblCSVFile.AutoSize = true;
+            this.lblCSVFile.Location = new System.Drawing.Point(541, 19);
+            this.lblCSVFile.Name = "lblCSVFile";
+            this.lblCSVFile.Size = new System.Drawing.Size(119, 13);
+            this.lblCSVFile.TabIndex = 9;
+            this.lblCSVFile.Text = "CSV ფაილის მისამართი";
+            // 
+            // txtPathToCSV
+            // 
+            this.txtPathToCSV.Location = new System.Drawing.Point(678, 16);
+            this.txtPathToCSV.Name = "txtPathToCSV";
+            this.txtPathToCSV.Size = new System.Drawing.Size(270, 20);
+            this.txtPathToCSV.TabIndex = 8;
+            // 
             // gpboxAxaliGadacema
             // 
+            this.gpboxAxaliGadacema.Controls.Add(this.btn_stop);
             this.gpboxAxaliGadacema.Controls.Add(this.lblAxaliGadacema);
             this.gpboxAxaliGadacema.Controls.Add(this.btnStopAndStart);
             this.gpboxAxaliGadacema.Controls.Add(this.txtNextGadacemaName);
             this.gpboxAxaliGadacema.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpboxAxaliGadacema.Location = new System.Drawing.Point(184, 98);
             this.gpboxAxaliGadacema.Name = "gpboxAxaliGadacema";
-            this.gpboxAxaliGadacema.Size = new System.Drawing.Size(292, 149);
+            this.gpboxAxaliGadacema.Size = new System.Drawing.Size(389, 149);
             this.gpboxAxaliGadacema.TabIndex = 4;
             this.gpboxAxaliGadacema.TabStop = false;
             this.gpboxAxaliGadacema.Text = "შემდეგი გადაცემის ჩაწერის დაწყება";
@@ -98,7 +126,7 @@
             // 
             this.btnStopAndStart.FlatAppearance.BorderSize = 0;
             this.btnStopAndStart.Image = global::CaptureTestConsole.Properties.Resources.stopplay_mini;
-            this.btnStopAndStart.Location = new System.Drawing.Point(203, 44);
+            this.btnStopAndStart.Location = new System.Drawing.Point(188, 43);
             this.btnStopAndStart.Name = "btnStopAndStart";
             this.btnStopAndStart.Size = new System.Drawing.Size(66, 56);
             this.btnStopAndStart.TabIndex = 4;
@@ -137,31 +165,16 @@
             this.dlgChooseCSVFile.FileName = "openFileDialog1";
             this.dlgChooseCSVFile.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgChooseCSVFile_FileOk);
             // 
-            // btnChooseCSVFile
+            // btn_stop
             // 
-            this.btnChooseCSVFile.Location = new System.Drawing.Point(948, 14);
-            this.btnChooseCSVFile.Name = "btnChooseCSVFile";
-            this.btnChooseCSVFile.Size = new System.Drawing.Size(75, 23);
-            this.btnChooseCSVFile.TabIndex = 10;
-            this.btnChooseCSVFile.Text = "არჩევა";
-            this.btnChooseCSVFile.UseVisualStyleBackColor = true;
-            this.btnChooseCSVFile.Click += new System.EventHandler(this.btnChooseCSVFile_Click);
-            // 
-            // lblCSVFile
-            // 
-            this.lblCSVFile.AutoSize = true;
-            this.lblCSVFile.Location = new System.Drawing.Point(541, 19);
-            this.lblCSVFile.Name = "lblCSVFile";
-            this.lblCSVFile.Size = new System.Drawing.Size(119, 13);
-            this.lblCSVFile.TabIndex = 9;
-            this.lblCSVFile.Text = "CSV ფაილის მისამართი";
-            // 
-            // txtPathToCSV
-            // 
-            this.txtPathToCSV.Location = new System.Drawing.Point(678, 16);
-            this.txtPathToCSV.Name = "txtPathToCSV";
-            this.txtPathToCSV.Size = new System.Drawing.Size(270, 20);
-            this.txtPathToCSV.TabIndex = 8;
+            this.btn_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_stop.Location = new System.Drawing.Point(276, 44);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(96, 55);
+            this.btn_stop.TabIndex = 7;
+            this.btn_stop.Text = "Stop";
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
             // 
             // RecorderController
             // 
@@ -196,5 +209,6 @@
         private System.Windows.Forms.Button btnChooseCSVFile;
         private System.Windows.Forms.Label lblCSVFile;
         private System.Windows.Forms.TextBox txtPathToCSV;
+        private System.Windows.Forms.Button btn_stop;
     }
 }

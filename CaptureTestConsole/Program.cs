@@ -16,26 +16,24 @@ namespace CaptureTestConsole
         private static Capture capture = null;
         private static Filters filters = new Filters();
 
+        public static string sCurrentRecordingFileName = "";
+
         public static string sFileContainingInfoAboutCSVFilePath = "../csvfilepath.txt";
         //
         public static bool StartRecording(string sFileName)
         {
-            if (null != capture)
-            {
-                //no need to ckeck, capture.Stop() will work anyway
-                if (true == capture.Capturing)
-                {
-                    capture.Stop();
-                    capture.Dispose();
-                }
-            }
+            //stoprecording does everything neccessary
+            VideoCaptureController.StopRecording();
+            //
             capture = new Capture(filters.VideoInputDevices[0], null);
             capture.CaptureComplete += new EventHandler(OnCaptureComplete);
             capture.Filename = sFileName;
             capture.Start();
+            sCurrentRecordingFileName = sFileName;
             Console.WriteLine("new capture {0}", sFileName);
             return true;
         }
+
         private static void OnCaptureComplete(object sender, EventArgs e)
         {
         }
@@ -63,6 +61,37 @@ namespace CaptureTestConsole
                 }
                 return true;
             }
+        }
+
+        public static void StopRecording()
+        {
+            if (null != capture)
+            {
+                //no need to ckeck, capture.Stop() will work anyway
+                if (true == capture.Capturing)
+                {
+                    capture.Stop();
+                    capture.Dispose();
+                    if ("" != sCurrentRecordingFileName)
+                    {
+                        System.Diagnostics.Process convert = System.Diagnostics.Process.Start(@"c:\Program Files\WinFF\ffmpeg.exe", " -i "
+                            + sCurrentRecordingFileName
+                            + " -ar 44100 "
+                            + " -y "
+                            + sCurrentRecordingFileName.Substring(0, sCurrentRecordingFileName.LastIndexOf("."))
+                            + ".flv");
+                        convert.Exited += new EventHandler(delegate(object sender, EventArgs e)
+                        {
+                            if (File.Exists(sCurrentRecordingFileName))
+                            {
+                                File.Delete(sCurrentRecordingFileName);
+                            }
+                        });
+                    }
+                    //
+                }
+            }
+            //
         }
     }
     class Program
