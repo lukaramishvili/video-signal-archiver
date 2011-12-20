@@ -56,7 +56,7 @@ namespace CaptureTestConsole
                 || "On Air Studio terminated" == lsAllLines[lastValidLineNum].Split(',')[6]
                 || (lsAllLines[lastValidLineNum].Split(',').Length > 7 && "Playback Stopped" == lsAllLines[lastValidLineNum].Split(',')[7])
                 || !(lsAllLines[lastValidLineNum].LastIndexOf(',') > lsAllLines[lastValidLineNum].IndexOf(','))
-                || !("RED" == lsAllLines[lastValidLineNum].Split(',')[1] || "PLAY" == lsAllLines[lastValidLineNum].Split(',')[1])
+                || !("RED" == lsAllLines[lastValidLineNum].Split(',')[1] || "PLAY" == lsAllLines[lastValidLineNum].Split(',')[1] || "NEWS PLAY" == lsAllLines[lastValidLineNum].Split(',')[1])
                 )
             {
                 if(0 > lastValidLineNum){
