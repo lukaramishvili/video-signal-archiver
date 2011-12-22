@@ -77,6 +77,9 @@ namespace CaptureTestConsole
                         System.Diagnostics.Process convert = System.Diagnostics.Process.Start(@"c:\Program Files\WinFF\ffmpeg.exe", " -i "
                             + sCurrentRecordingFileName
                             + " -ar 44100 "
+                            + " -b 1250k "
+                            + " -r 25 "
+                            + " -ab 128k "
                             + " -y "
                             + sCurrentRecordingFileName.Substring(0, sCurrentRecordingFileName.LastIndexOf("."))
                             + ".flv");

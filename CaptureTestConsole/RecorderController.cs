@@ -145,6 +145,12 @@ namespace CaptureTestConsole
             string sLastDatabaseOrCSVGadacemaName = "";
             timerResetCheckOrNot.Elapsed += delegate(object senderTimer, ElapsedEventArgs eTimer)
             {
+                if ((DateTime.Now.Hour >= 3) && (DateTime.Now.Hour < 7))
+                {
+                    //don't record between 03:00 AM and 07:00 AM
+                    VideoCaptureController.StopRecording();
+                    return;
+                }
                 string sAxaliGadacemisSaxeli;
                 DateTime dtAxaliGadacemisDackebisDro;
                 if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro))
