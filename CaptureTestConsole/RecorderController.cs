@@ -123,6 +123,24 @@ namespace CaptureTestConsole
             return ret;
         }
 
+        //cvlis parametrs bazidan camogebuli saxelit, tu DateTime.Now() droistvis aris [fOnlyForName = 1] chanaceri bazashi
+        public static bool ChangeParamIfInDBIsGadacemaOnlyForName(ref string sParamGadacemaName)
+        {
+            bool fAnythingFound = false;
+            MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacema WHERE dttStartTime < NOW() "
+                                                    + " AND dttEndTime > NOW() "
+                                                    + " AND fUseOnlyForName = 1 " + " ;"
+                                                  , sqlConn);
+            MySqlDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                sParamGadacemaName = (string)reader["sGadacemisSaxeli"];
+                fAnythingFound = true;
+            }
+            reader.Close();
+            return fAnythingFound;
+        }
+
         /// <summary>
         /// Pseudocode, but structure is correct, only modify variable names and SQL command text
         /// </summary>
@@ -135,9 +153,10 @@ namespace CaptureTestConsole
             GadacemisSaxeli = "";
             dttStartTime = DateTime.Now;
             //
-            MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacema WHERE dttStartTime < NOW()"
-                                                    + "AND dttEndTime > NOW()"
-                                                    + "AND sGadacemisSaxeli != '" + sNowPlaying.Replace("'", "").Replace("\"", "") + "';"
+            MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacema WHERE dttStartTime < NOW() "
+                                                    + " AND dttEndTime > NOW() "
+                                                    + " AND sGadacemisSaxeli != '" + sNowPlaying.Replace("'", "").Replace("\"", "") + "' "
+                                                    + " AND fUseOnlyForName = 0 " + " ;"
                                                   , sqlConn);
             MySqlDataReader reader = select.ExecuteReader();
             while (reader.Read())
@@ -186,6 +205,7 @@ namespace CaptureTestConsole
                         : (0 < sAxaliGadacemisSaxeli.IndexOf("."))
                             ? sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf("."))
                             : sAxaliGadacemisSaxeli;
+                    ChangeParamIfInDBIsGadacemaOnlyForName(ref sGadacemaName);
                     sLastDatabaseOrCSVGadacemaName = sGadacemaName;
                     //call capture
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));

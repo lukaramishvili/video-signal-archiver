@@ -35,7 +35,7 @@ namespace ArchivingDatabaseManager
             dgvDgisPrograma.Enabled = false;
             DateTime dtSel = dttChooseDay.Value;
             MySqlCommand cmdLoadDay
-                = new MySqlCommand("SELECT dttStartTime, dttEndTime, sGadacemisSaxeli "
+                = new MySqlCommand("SELECT dttStartTime, dttEndTime, sGadacemisSaxeli, fUseOnlyForName "
                                     + " FROM gadacema "
                                     + " WHERE DATE(dttStartTime) = '"
                                     + dtSel.Year.ToString() + "-"
@@ -51,10 +51,12 @@ namespace ArchivingDatabaseManager
                 DateTime dbdttStartTime = DateTime.Parse(rdr[0].ToString());
                 DateTime dbdttEndTime = DateTime.Parse(rdr[1].ToString());
                 string dbsGadacemisSaxeli = rdr[2].ToString();
+                int dbfUseOnlyForName = Int32.Parse(rdr[3].ToString());
                 dgvDgisPrograma.Rows.Add(new object[]{
                       dbdttStartTime.ToString(@"dd-MM-yyyy HH:mm:ss", CultureProvider)
                     , dbdttEndTime.ToString(@"dd-MM-yyyy HH:mm:ss", CultureProvider)
                     , dbsGadacemisSaxeli
+                    , dbfUseOnlyForName
                 });
             }
             rdr.Close();
@@ -84,6 +86,7 @@ namespace ArchivingDatabaseManager
                     DateTime xStartTime = DateTime.ParseExact(xRow.Cells[0].Value.ToString(), @"dd-MM-yyyy HH:mm:ss", CultureProvider);
                     DateTime xEndTime = DateTime.ParseExact(xRow.Cells[1].Value.ToString(), @"dd-MM-yyyy HH:mm:ss", CultureProvider);
                     string xGadacemisSaxeli = xRow.Cells[2].Value.ToString();
+                    string xUseOnlyForName = xRow.Cells[3].Value.ToString();
                     foreach (char invalidChar in Path.GetInvalidFileNameChars())
                     {
                         xGadacemisSaxeli = xGadacemisSaxeli.Replace(invalidChar.ToString(), "");
@@ -92,17 +95,24 @@ namespace ArchivingDatabaseManager
                         = new MySqlCommand("INSERT INTO `imedi_db`.`gadacema`"
                             + "(`sGadacemisSaxeli`,"
                             + "`dttStartTime`,"
-                            + "`dttEndTime`)"
+                            + "`dttEndTime`,"
+                            + "`fUseOnlyForName`)"
                             + "  VALUES "
                             + " ( "
                             + " '" + xGadacemisSaxeli + "', "
                             + " '" + xStartTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
-                            + " '" + xEndTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "' "
+                            + " '" + xEndTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
+                            + " '" + (("True"==xUseOnlyForName.ToString())?1:0) + "' "
                             + ");"
                         , sqlConn, transactionUpdateDay);
                     cmdInsertGadacema.ExecuteNonQuery();
                 }
                 catch (FormatException)
+                {
+                    retVal = false;
+                    break;
+                }
+                catch (NullReferenceException)
                 {
                     retVal = false;
                     break;

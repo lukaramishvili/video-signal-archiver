@@ -31,10 +31,11 @@
             this.panel_main = new System.Windows.Forms.Panel();
             this.btnSaveGadacemebiToDatabase = new System.Windows.Forms.Button();
             this.dgvDgisPrograma = new System.Windows.Forms.DataGridView();
+            this.dttChooseDay = new System.Windows.Forms.DateTimePicker();
             this.colStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGadacemisSaxeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dttChooseDay = new System.Windows.Forms.DateTimePicker();
+            this.colOnlyForName = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDgisPrograma)).BeginInit();
             this.SuspendLayout();
@@ -68,12 +69,21 @@
             this.dgvDgisPrograma.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colStartTime,
             this.colEndTime,
-            this.colGadacemisSaxeli});
+            this.colGadacemisSaxeli,
+            this.colOnlyForName});
             this.dgvDgisPrograma.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDgisPrograma.Location = new System.Drawing.Point(3, 40);
             this.dgvDgisPrograma.Name = "dgvDgisPrograma";
             this.dgvDgisPrograma.Size = new System.Drawing.Size(806, 515);
             this.dgvDgisPrograma.TabIndex = 10;
+            // 
+            // dttChooseDay
+            // 
+            this.dttChooseDay.Location = new System.Drawing.Point(6, 11);
+            this.dttChooseDay.Name = "dttChooseDay";
+            this.dttChooseDay.Size = new System.Drawing.Size(200, 20);
+            this.dttChooseDay.TabIndex = 9;
+            this.dttChooseDay.ValueChanged += new System.EventHandler(this.dttChooseDay_ValueChanged);
             // 
             // colStartTime
             // 
@@ -93,13 +103,11 @@
             this.colGadacemisSaxeli.Name = "colGadacemisSaxeli";
             this.colGadacemisSaxeli.Width = 250;
             // 
-            // dttChooseDay
+            // colOnlyForName
             // 
-            this.dttChooseDay.Location = new System.Drawing.Point(6, 11);
-            this.dttChooseDay.Name = "dttChooseDay";
-            this.dttChooseDay.Size = new System.Drawing.Size(200, 20);
-            this.dttChooseDay.TabIndex = 9;
-            this.dttChooseDay.ValueChanged += new System.EventHandler(this.dttChooseDay_ValueChanged);
+            this.colOnlyForName.HeaderText = "გამოიყენება მხოლოდ სახელისთვის";
+            this.colOnlyForName.Name = "colOnlyForName";
+            this.colOnlyForName.Width = 200;
             // 
             // frmGadacemebisMartva
             // 
@@ -122,10 +130,11 @@
         private System.Windows.Forms.Panel panel_main;
         private System.Windows.Forms.Button btnSaveGadacemebiToDatabase;
         private System.Windows.Forms.DataGridView dgvDgisPrograma;
+        private System.Windows.Forms.DateTimePicker dttChooseDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEndTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGadacemisSaxeli;
-        private System.Windows.Forms.DateTimePicker dttChooseDay;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colOnlyForName;
     }
 }
 
