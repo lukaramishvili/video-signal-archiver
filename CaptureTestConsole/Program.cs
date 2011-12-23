@@ -29,7 +29,16 @@ namespace CaptureTestConsole
             capture = new Capture(filters.VideoInputDevices[0], null);
             capture.CaptureComplete += new EventHandler(OnCaptureComplete);
             capture.Filename = sFileName;
-            capture.Start();
+            try
+            {
+                capture.Start();
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Videokabeli dakavebulia. Gtxovt scadot tavidan!");
+                capture.Dispose();
+                return false;
+            }
             sCurrentRecordingFileName = sFileName;
             Console.WriteLine("new capture {0}", sFileName);
             return true;
