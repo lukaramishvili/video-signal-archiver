@@ -45,56 +45,67 @@ namespace CaptureTestConsole
                                                                                         + ".csv");
             ftp.Credentials = new NetworkCredential("log", "log");
             ftp.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);//nocachenostore?
-            System.Net.FtpWebResponse resp = (FtpWebResponse)ftp.GetResponse();
-            StreamReader csv = new StreamReader(resp.GetResponseStream(), Encoding.ASCII);
-            //
-            string[] lsAllLines = csv.ReadToEnd().Replace("\r", "").Split('\n');
-            //
-            int lastValidLineNum = lsAllLines.Length - 1;
-            while ("" == lsAllLines[lastValidLineNum]
-                || lsAllLines[lastValidLineNum].Split(',').Length < 7
-                || "On Air Studio terminated" == lsAllLines[lastValidLineNum].Split(',')[6]
-                || (lsAllLines[lastValidLineNum].Split(',').Length > 7 && "Playback Stopped" == lsAllLines[lastValidLineNum].Split(',')[7])
-                || !(lsAllLines[lastValidLineNum].LastIndexOf(',') > lsAllLines[lastValidLineNum].IndexOf(','))
-                || !("RED" == lsAllLines[lastValidLineNum].Split(',')[1] || "PLAY" == lsAllLines[lastValidLineNum].Split(',')[1] || "NEWS PLAY" == lsAllLines[lastValidLineNum].Split(',')[1])
-                )
+            try
             {
-                if(0 > lastValidLineNum){
-                    Console.WriteLine("CSV File not valid. Press any key to exit!");
-                    Console.ReadLine();
-                    Application.Exit();
-                    break;
-                }
-                lastValidLineNum--;
-            }
-            if (lsAllLines.Length > unLineCountLastTime
-                && sGadacemisSaxeliLastTime != lsAllLines[lastValidLineNum].Split(',')[4])
-            {
-                unLineCountLastTime = lsAllLines.Length;
-                string[] arrBoloStriqonisMonacemebi = lsAllLines[lastValidLineNum].Split(',');
-                sGadacemisSaxeliLastTime = arrBoloStriqonisMonacemebi[4];
-                //todo guess name from arrBoloStriqonisMonacemebi[4]
-                sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\') + 1);
-                try
+                System.Net.FtpWebResponse resp = (FtpWebResponse)ftp.GetResponse();
+                StreamReader csv = new StreamReader(resp.GetResponseStream(), Encoding.ASCII);
+                //
+                string[] lsAllLines = csv.ReadToEnd().Replace("\r", "").Split('\n');
+                //
+                int lastValidLineNum = lsAllLines.Length - 1;
+                while ("" == lsAllLines[lastValidLineNum]
+                    || lsAllLines[lastValidLineNum].Split(',').Length < 7
+                    || "On Air Studio terminated" == lsAllLines[lastValidLineNum].Split(',')[6]
+                    || (lsAllLines[lastValidLineNum].Split(',').Length > 7 && "Playback Stopped" == lsAllLines[lastValidLineNum].Split(',')[7])
+                    || !(lsAllLines[lastValidLineNum].LastIndexOf(',') > lsAllLines[lastValidLineNum].IndexOf(','))
+                    || !("RED" == lsAllLines[lastValidLineNum].Split(',')[1] || "PLAY" == lsAllLines[lastValidLineNum].Split(',')[1] || "NEWS PLAY" == lsAllLines[lastValidLineNum].Split(',')[1])
+                    )
                 {
-                    dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
-                        //, @"dd\/M\/yyyy HH:mm:ss"
-                                                                    , @"M\/dd\/yyyy HH:mm:ss"
-                                                                    , CultureProvider);
+                    if (0 > lastValidLineNum)
+                    {
+                        Console.WriteLine("CSV File not valid. Press any key to exit!");
+                        Console.ReadLine();
+                        Application.Exit();
+                        break;
+                    }
+                    lastValidLineNum--;
                 }
-                catch (FormatException)
+                if (lsAllLines.Length > unLineCountLastTime
+                    && sGadacemisSaxeliLastTime != lsAllLines[lastValidLineNum].Split(',')[4])
                 {
-                    dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
-                        //, @"dd\/M\/yyyy HH:mm:ss"
-                                                                    , @"dd\/M\/yyyy HH:mm:ss"
-                                                                    , CultureProvider);
+                    unLineCountLastTime = lsAllLines.Length;
+                    string[] arrBoloStriqonisMonacemebi = lsAllLines[lastValidLineNum].Split(',');
+                    sGadacemisSaxeliLastTime = arrBoloStriqonisMonacemebi[4];
+                    //todo guess name from arrBoloStriqonisMonacemebi[4]
+                    sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\') + 1);
+                    try
+                    {
+                        dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
+                            //, @"dd\/M\/yyyy HH:mm:ss"
+                                                                        , @"M\/dd\/yyyy HH:mm:ss"
+                                                                        , CultureProvider);
+                    }
+                    catch (FormatException)
+                    {
+                        dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
+                            //, @"dd\/M\/yyyy HH:mm:ss"
+                                                                        , @"dd\/M\/yyyy HH:mm:ss"
+                                                                        , CultureProvider);
+                    }
+                    return true;
                 }
-                return true;
+                else
+                {
+                    sShemdegiGadacemisSaxeli = null;
+                    dtAxaliGadacemisDackebisDro = DateTime.Now;
+                    return false;
+                }
             }
-            else
+            catch (WebException)
             {
                 sShemdegiGadacemisSaxeli = null;
                 dtAxaliGadacemisDackebisDro = DateTime.Now;
+                Console.WriteLine("CSV File not found for current day. ");
                 return false;
             }
         }

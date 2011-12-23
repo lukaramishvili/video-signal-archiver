@@ -8,6 +8,7 @@ using System.Globalization;
 using DirectX.Capture;
 using System.Timers;
 using System.Windows.Forms;
+using System.Net;
 
 namespace CaptureTestConsole
 {
@@ -83,18 +84,75 @@ namespace CaptureTestConsole
                             + " -y "
                             + sCurrentRecordingFileName.Substring(0, sCurrentRecordingFileName.LastIndexOf("."))
                             + ".flv");
+                        //TODO: THIS CODE DOESNT GET CALLED
                         convert.Exited += new EventHandler(delegate(object sender, EventArgs e)
                         {
-                            if (File.Exists(sCurrentRecordingFileName))
-                            {
-                                File.Delete(sCurrentRecordingFileName);
-                            }
+                            //droebit, vtvirtavt FLV-s chaceris morchenistanave
+                            FTPUploader upl = new FTPUploader(sCurrentRecordingFileName);
+                            upl.UploadFileToFTP();
+                            //Thread thrUpload = new Thread(new ThreadStart(upl.UploadFileToFTP));
+                            //thrUpload.SetApartmentState(ApartmentState.STA);
+                            //thrUpload.Start();
                         });
                     }
                     //
                 }
             }
             //
+        }
+    }
+
+    class FTPUploader
+    {
+        private string sFileNameToUpload = "";
+
+        public FTPUploader(string argsFileName)
+        {
+            sFileNameToUpload = argsFileName;
+        }
+
+        public void UploadFileToFTP()
+        {
+            if (File.Exists(sFileNameToUpload))
+            {
+                // Get the object used to communicate with the server.
+                FileInfo fileVideo = new FileInfo(sFileNameToUpload);
+                DirectoryInfo parentDay = Directory.GetParent(fileVideo.DirectoryName);
+                DirectoryInfo parentMonth = Directory.GetParent(parentDay.FullName);
+                DirectoryInfo parentYear = Directory.GetParent(parentMonth.FullName);
+                FtpWebRequest request 
+                    = (FtpWebRequest)WebRequest.Create("ftp://ftp.propagandahq.ge/video/"
+                    + parentYear.Name + "-"
+                    + parentMonth.Name + "-"
+                    + parentDay.Name + "-"
+                    + fileVideo.Name
+                    + "");// ("ftp://92.241.90.24/");
+                request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                // This example assumes the FTP site uses anonymous logon.
+                request.Credentials = new NetworkCredential("prop3993", "Pr0p@ganda");//("vdupl", "z4g2zlmn");
+
+                // Copy the contents of the file to the request stream.
+                StreamReader sourceStream = new StreamReader(sFileNameToUpload);
+                byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
+                sourceStream.Close();
+                request.ContentLength = fileContents.Length;
+
+                Stream requestStream = request.GetRequestStream();
+
+                Console.WriteLine("Upload File {0} Started. ", sFileNameToUpload);
+
+                requestStream.Write(fileContents, 0, fileContents.Length);
+                requestStream.Close();
+
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                Console.WriteLine("Upload File {0} Complete, status {1}", sFileNameToUpload, response.StatusDescription);
+
+                response.Close();
+                //delete source file after uploading
+                File.Delete(sFileNameToUpload.Replace("flv", "avi"));
+            }
         }
     }
     class Program
