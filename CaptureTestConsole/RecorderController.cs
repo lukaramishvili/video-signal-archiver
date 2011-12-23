@@ -75,9 +75,11 @@ namespace CaptureTestConsole
                 {
                     unLineCountLastTime = lsAllLines.Length;
                     string[] arrBoloStriqonisMonacemebi = lsAllLines[lastValidLineNum].Split(',');
-                    sGadacemisSaxeliLastTime = arrBoloStriqonisMonacemebi[4];
+                    sGadacemisSaxeliLastTime = TrimFileNameFromUnwantedChars(arrBoloStriqonisMonacemebi[4]);
                     //todo guess name from arrBoloStriqonisMonacemebi[4]
-                    sShemdegiGadacemisSaxeli = arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\') + 1);
+                    sShemdegiGadacemisSaxeli
+                        = TrimFileNameFromUnwantedChars(
+                                arrBoloStriqonisMonacemebi[4].Substring(arrBoloStriqonisMonacemebi[4].LastIndexOf('\\') + 1));
                     try
                     {
                         dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
@@ -110,6 +112,17 @@ namespace CaptureTestConsole
             }
         }
 
+        public static string TrimFileNameFromUnwantedChars(string s)
+        {
+            string ret = s;
+            ret = ret.Replace(" ", "");
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                ret = ret.Replace(c.ToString(), "");
+            }
+            return ret;
+        }
+
         /// <summary>
         /// Pseudocode, but structure is correct, only modify variable names and SQL command text
         /// </summary>
@@ -124,8 +137,8 @@ namespace CaptureTestConsole
             //
             MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacema WHERE dttStartTime < NOW()"
                                                     + "AND dttEndTime > NOW()"
-                                                    + "AND sGadacemisSaxeli != '" + sNowPlaying.Replace("'","").Replace("\"","") + "';"
-                                                  ,sqlConn);
+                                                    + "AND sGadacemisSaxeli != '" + sNowPlaying.Replace("'", "").Replace("\"", "") + "';"
+                                                  , sqlConn);
             MySqlDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
@@ -170,7 +183,9 @@ namespace CaptureTestConsole
                     string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
                         ? sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.IndexOf("_"))
                         //:"undefined";
-                        : sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf(".")).Replace(" ", "");
+                        : (0 < sAxaliGadacemisSaxeli.IndexOf("."))
+                            ? sAxaliGadacemisSaxeli.Substring(0, sAxaliGadacemisSaxeli.LastIndexOf("."))
+                            : sAxaliGadacemisSaxeli;
                     sLastDatabaseOrCSVGadacemaName = sGadacemaName;
                     //call capture
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
