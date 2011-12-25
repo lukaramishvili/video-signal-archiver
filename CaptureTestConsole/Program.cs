@@ -48,6 +48,18 @@ namespace CaptureTestConsole
         {
         }
 
+        public static bool fIsRecording()
+        {
+            if (null != capture)
+            {
+                return capture.Capturing;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static bool EnsureWeHaveAFileWithCSVPathInIt(string sNewCSVPath = null)
         {
             if (null != sNewCSVPath && false == File.Exists(sNewCSVPath))

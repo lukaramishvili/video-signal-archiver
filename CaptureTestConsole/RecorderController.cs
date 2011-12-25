@@ -179,6 +179,9 @@ namespace CaptureTestConsole
             return s.Length > 1 ? s : "0" + s;
         }
 
+        bool fDilasAvtomaturiChacera = false;
+        DateTime dtLastAvtomaturiChacerisDro = DateTime.Now;
+
         private void RecorderController_Load(object sender, EventArgs e)
         {
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
@@ -186,6 +189,7 @@ namespace CaptureTestConsole
             //
             System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3000);
             string sLastDatabaseOrCSVGadacemaName = "";
+
             timerResetCheckOrNot.Elapsed += delegate(object senderTimer, ElapsedEventArgs eTimer)
             {
                 if ((DateTime.Now.Hour >= 3) && (DateTime.Now.Hour < 7))
@@ -210,6 +214,8 @@ namespace CaptureTestConsole
                     //call capture
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
                     //
+                    fDilasAvtomaturiChacera = false;
+                    //
                 }
                 else if (true == isThereGadacemebiForNow(sGadacemisSaxeliLastTime, out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
                     && sLastDatabaseOrCSVGadacemaName != sAxaliGadacemisSaxeli)
@@ -224,10 +230,38 @@ namespace CaptureTestConsole
                     //call capture
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
                     //
+                    fDilasAvtomaturiChacera = false;
+                    //
                 }
                 else
                 {
-                    //Console.WriteLine("don't stop capturing");
+                    //record automatically from 7:00 AM if neither CSV or db gadacemebi are available
+                    if ((DateTime.Now.Hour >= 7) && (DateTime.Now.Hour < 12))
+                    {
+                        //if it's between 7:00AM and 8:00AM and the program has already started automated recording
+                        if (VideoCaptureController.fIsRecording())
+                        {
+                            //tu dilit avtomaturi chaceraa chartuli da ert saatze metia chacerili, gackvitos chacera da tavidan daickos
+                            if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Hours > 0)
+                            {
+                                //stop & start recording
+                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("dila", DateTime.Now));
+                                fDilasAvtomaturiChacera = true;
+                                dtLastAvtomaturiChacerisDro = DateTime.Now;
+                                Console.WriteLine("Avtomaturma chaceram daimaxsovra ertsaatiani faili da agrdzelebs shemdegis chaceras.");
+                            }
+                        }
+                        //else it's between 7:00AM and 8:00 AM without CSV or db and the program should start recording
+                        else
+                        {
+                            //stop & start recording
+                            VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("dila", DateTime.Now));
+                            fDilasAvtomaturiChacera = true;
+                            dtLastAvtomaturiChacerisDro = DateTime.Now;
+                            Console.WriteLine("Vrtavt chaceras avtomaturad. ");
+                        }
+                        //
+                    }
                 }
             };
             timerResetCheckOrNot.Start();
@@ -273,6 +307,7 @@ namespace CaptureTestConsole
             if (0 < txtNextGadacemaName.Text.Length)
             {
                 VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(txtNextGadacemaName.Text, DateTime.Now));
+                fDilasAvtomaturiChacera = false;
             }
         }
 
@@ -307,6 +342,7 @@ namespace CaptureTestConsole
         private void btn_stop_Click(object sender, EventArgs e)
         {
             VideoCaptureController.StopRecording();
+            fDilasAvtomaturiChacera = false;
         }
     }
 }
