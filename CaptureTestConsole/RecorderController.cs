@@ -200,7 +200,8 @@ namespace CaptureTestConsole
                 }
                 string sAxaliGadacemisSaxeli;
                 DateTime dtAxaliGadacemisDackebisDro;
-                if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro))
+                if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
+                    && false == (dtAxaliGadacemisDackebisDro.Hour < 4 && DateTime.Now.Hour >= 7))
                 {
                     //
                     string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
@@ -236,26 +237,29 @@ namespace CaptureTestConsole
                 else
                 {
                     //record automatically from 7:00 AM if neither CSV or db gadacemebi are available
-                    if ((DateTime.Now.Hour >= 7) && (DateTime.Now.Hour < 12))
+                    //if ((DateTime.Now.Hour >= 7) && (DateTime.Now.Hour < 12))
+                    //AXALI: yoveltvis ganaaxlos chacera, roca naxavs ro gacherebulia
+                    if(true)
                     {
                         //if it's between 7:00AM and 8:00AM and the program has already started automated recording
                         if (VideoCaptureController.fIsRecording())
                         {
                             //tu dilit avtomaturi chaceraa chartuli da ert saatze metia chacerili, gackvitos chacera da tavidan daickos
-                            if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Hours > 0)
+                            if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Minutes > 30)
                             {
                                 //stop & start recording
-                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("dila", DateTime.Now));
+                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
                                 fDilasAvtomaturiChacera = true;
                                 dtLastAvtomaturiChacerisDro = DateTime.Now;
                                 Console.WriteLine("Avtomaturma chaceram daimaxsovra ertsaatiani faili da agrdzelebs shemdegis chaceras.");
                             }
                         }
                         //else it's between 7:00AM and 8:00 AM without CSV or db and the program should start recording
+                        //AXALI: roca gacherebulia da csv/db-shi axali chanaceri ar aris
                         else
                         {
                             //stop & start recording
-                            VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("dila", DateTime.Now));
+                            VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
                             fDilasAvtomaturiChacera = true;
                             dtLastAvtomaturiChacerisDro = DateTime.Now;
                             Console.WriteLine("Vrtavt chaceras avtomaturad. ");

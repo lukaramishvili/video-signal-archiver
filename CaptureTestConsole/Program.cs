@@ -146,7 +146,7 @@ namespace CaptureTestConsole
                 DirectoryInfo parentDay = new DirectoryInfo(fileVideo.DirectoryName);
                 DirectoryInfo parentMonth = Directory.GetParent(parentDay.FullName);
                 DirectoryInfo parentYear = Directory.GetParent(parentMonth.FullName);
-                FtpWebRequest request 
+                FtpWebRequest request
                     = (FtpWebRequest)WebRequest.Create("ftp://92.241.90.24/videofiles/"
                     + parentYear.Name + "-"
                     + parentMonth.Name + "-"
@@ -159,25 +159,39 @@ namespace CaptureTestConsole
                 request.Credentials = new NetworkCredential("vdupl", "z4grzlmn");
 
                 // Copy the contents of the file to the request stream.
-                StreamReader sourceStream = new StreamReader(sFileNameToUpload);
-                byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
-                sourceStream.Close();
-                request.ContentLength = fileContents.Length;
+                try
+                {
+                    StreamReader sourceStream = new StreamReader(sFileNameToUpload);
+                    byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
+                    sourceStream.Close();
+                    request.ContentLength = fileContents.Length;
 
-                Stream requestStream = request.GetRequestStream();
+                    Stream requestStream = request.GetRequestStream();
 
-                Console.WriteLine("Upload File {0} Started. ", sFileNameToUpload);
+                    Console.WriteLine("Upload File {0} Started. ", sFileNameToUpload);
 
-                requestStream.Write(fileContents, 0, fileContents.Length);
-                requestStream.Close();
+                    requestStream.Write(fileContents, 0, fileContents.Length);
+                    requestStream.Close();
 
-                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                    FtpWebResponse response = (FtpWebResponse)request.GetResponse();
 
-                Console.WriteLine("Upload File {0} Complete, status {1}", sFileNameToUpload, response.StatusDescription);
+                    Console.WriteLine("Upload File {0} Complete, status {1}", sFileNameToUpload, response.StatusDescription);
 
-                response.Close();
-                //delete source file after uploading
-                File.Delete(sFileNameToUpload.Replace("flv", "avi"));
+                    response.Close();
+                    //delete source file after uploading
+                    try
+                    {
+                        File.Delete(sFileNameToUpload.Replace("flv", "avi"));
+                    }
+                    catch (IOException)
+                    {
+                        Console.WriteLine("Cannot delete file {0}, it is used by another process. ", sFileNameToUpload.Replace("flv", "avi"));
+                    }
+                }
+                catch (IOException)
+                {
+                    Console.WriteLine("Faili dakavebulia. Gtxovt scadot tavidan. ");
+                }
             }
         }
     }
