@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Net;
 using System.Net.Cache;
+using System.Runtime;
 
 namespace CaptureTestConsole
 {
@@ -84,8 +85,16 @@ namespace CaptureTestConsole
                     {
                         dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
                             //, @"dd\/M\/yyyy HH:mm:ss"
-                                                                        , @"M\/dd\/yyyy HH:mm:ss"
+                                                                        , @"M\/d\/yyyy HH:mm:ss"
+                                                                        //was dd
                                                                         , CultureProvider);
+                        if (dtAxaliGadacemisDackebisDro.Month != DateTime.Now.Month)
+                        {
+                        dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
+                            //, @"dd\/M\/yyyy HH:mm:ss"
+                                                                        , @"d\/M\/yyyy HH:mm:ss"
+                                                                        , CultureProvider);
+                        }
                     }
                     catch (FormatException)
                     {
@@ -244,14 +253,32 @@ namespace CaptureTestConsole
                         //if it's between 7:00AM and 8:00AM and the program has already started automated recording
                         if (VideoCaptureController.fIsRecording())
                         {
-                            //tu dilit avtomaturi chaceraa chartuli da ert saatze metia chacerili, gackvitos chacera da tavidan daickos
-                            if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Minutes > 30)
+                            //TODO: or predict memory scarciness with MemoryFailPoint Class
+                            try
                             {
-                                //stop & start recording
-                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
-                                fDilasAvtomaturiChacera = true;
-                                dtLastAvtomaturiChacerisDro = DateTime.Now;
-                                Console.WriteLine("Avtomaturma chaceram daimaxsovra ertsaatiani faili da agrdzelebs shemdegis chaceras.");
+                                MemoryFailPoint mfp = new MemoryFailPoint(500);
+                            }
+                            catch (InsufficientMemoryException)
+                            {
+                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
+                            }
+                            //
+                            Console.WriteLine("Free Memory: {0} Megabytes.",GetFreeMemory());
+                            if (GetFreeMemory()<500)
+                            {
+                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
+                            }
+                            else
+                            {
+                                //tu dilit avtomaturi chaceraa chartuli da ert saatze metia chacerili, gackvitos chacera da tavidan daickos
+                                if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Minutes > 30)
+                                {
+                                    //stop & start recording
+                                    VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
+                                    fDilasAvtomaturiChacera = true;
+                                    dtLastAvtomaturiChacerisDro = DateTime.Now;
+                                    Console.WriteLine("Avtomaturma chaceram daimaxsovra ertsaatiani faili da agrdzelebs shemdegis chaceras.");
+                                }
                             }
                         }
                         //else it's between 7:00AM and 8:00 AM without CSV or db and the program should start recording
@@ -279,6 +306,14 @@ namespace CaptureTestConsole
         void Application_ApplicationExit(object sender, EventArgs e)
         {
             sqlConn.Close();
+        }
+
+        public long GetFreeMemory()
+        {
+            System.Diagnostics.PerformanceCounter pc 
+                = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
+            long freeMemory = Convert.ToInt64(pc.NextValue());
+            return freeMemory;
         }
 
         //creates needed folders and returns formatted file name

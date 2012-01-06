@@ -72,7 +72,7 @@ namespace CaptureTestConsole
                                                                                         + DateTime.Now.Year.ToString()
                                                                                         + RecorderController.add_zeros(DateTime.Now.Month.ToString())
                                                                                         + RecorderController.add_zeros(DateTime.Now.Day.ToString())
-                                                                                        +".csv");
+                                                                                        + ".csv");
                 return true;
             }
             else
@@ -98,7 +98,7 @@ namespace CaptureTestConsole
                     {
                         string sFlvOutputName = sCurrentRecordingFileName.Substring(0, sCurrentRecordingFileName.LastIndexOf(".")) + ".flv";
                         System.Diagnostics.Process convert = new System.Diagnostics.Process();
-                        convert.StartInfo 
+                        convert.StartInfo
                             = new System.Diagnostics.ProcessStartInfo
                                 (@"c:\Program Files\WinFF\ffmpeg.exe", " -i "
                             + "\"" + sCurrentRecordingFileName + "\""
@@ -154,6 +154,7 @@ namespace CaptureTestConsole
                     + fileVideo.Name
                     + "");// (");
                 request.Method = WebRequestMethods.Ftp.UploadFile;
+                request.UseBinary = true;
 
                 // This example assumes the FTP site uses anonymous logon.
                 request.Credentials = new NetworkCredential("vdupl", "z4grzlmn");
@@ -161,8 +162,12 @@ namespace CaptureTestConsole
                 // Copy the contents of the file to the request stream.
                 try
                 {
-                    StreamReader sourceStream = new StreamReader(sFileNameToUpload);
-                    byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
+                    BinaryReader sourceStream = new BinaryReader(File.Open(sFileNameToUpload, FileMode.Open));
+                    byte[] fileContents = new byte[sourceStream.BaseStream.Length];
+                    for (int readPos = 0; readPos < fileContents.Length; readPos++)
+                    {
+                        fileContents[readPos] = sourceStream.ReadByte();
+                    }
                     sourceStream.Close();
                     request.ContentLength = fileContents.Length;
 
