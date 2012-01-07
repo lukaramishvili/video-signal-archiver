@@ -86,14 +86,14 @@ namespace CaptureTestConsole
                         dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
                             //, @"dd\/M\/yyyy HH:mm:ss"
                                                                         , @"M\/d\/yyyy HH:mm:ss"
-                                                                        //was dd
+                            //was dd
                                                                         , CultureProvider);
                         if (dtAxaliGadacemisDackebisDro.Month != DateTime.Now.Month)
                         {
-                        dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
-                            //, @"dd\/M\/yyyy HH:mm:ss"
-                                                                        , @"d\/M\/yyyy HH:mm:ss"
-                                                                        , CultureProvider);
+                            dtAxaliGadacemisDackebisDro = DateTime.ParseExact(arrBoloStriqonisMonacemebi[5] + " " + arrBoloStriqonisMonacemebi[6]
+                                //, @"dd\/M\/yyyy HH:mm:ss"
+                                                                            , @"d\/M\/yyyy HH:mm:ss"
+                                                                            , CultureProvider);
                         }
                     }
                     catch (FormatException)
@@ -248,7 +248,7 @@ namespace CaptureTestConsole
                     //record automatically from 7:00 AM if neither CSV or db gadacemebi are available
                     //if ((DateTime.Now.Hour >= 7) && (DateTime.Now.Hour < 12))
                     //AXALI: yoveltvis ganaaxlos chacera, roca naxavs ro gacherebulia
-                    if(true)
+                    if (true)
                     {
                         //if it's between 7:00AM and 8:00AM and the program has already started automated recording
                         if (VideoCaptureController.fIsRecording())
@@ -260,11 +260,11 @@ namespace CaptureTestConsole
                             }
                             catch (InsufficientMemoryException)
                             {
-                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
+                                //VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
                             }
                             //
-                            Console.WriteLine("Free Memory: {0} Megabytes.",GetFreeMemory());
-                            if (GetFreeMemory()<500)
+                            Console.WriteLine("Free Memory: {0} Megabytes.", GetFreeMemory());
+                            if (GetFreeMemory() < 500)
                             {
                                 VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
                             }
@@ -310,7 +310,7 @@ namespace CaptureTestConsole
 
         public long GetFreeMemory()
         {
-            System.Diagnostics.PerformanceCounter pc 
+            System.Diagnostics.PerformanceCounter pc
                 = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
             long freeMemory = Convert.ToInt64(pc.NextValue());
             return freeMemory;

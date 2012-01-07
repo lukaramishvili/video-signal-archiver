@@ -96,9 +96,10 @@ namespace CaptureTestConsole
                     capture.Dispose();
                     if ("" != sCurrentRecordingFileName)
                     {
+                        //////////////// CONVERT & UPLOAD .FLV
                         string sFlvOutputName = sCurrentRecordingFileName.Substring(0, sCurrentRecordingFileName.LastIndexOf(".")) + ".flv";
-                        System.Diagnostics.Process convert = new System.Diagnostics.Process();
-                        convert.StartInfo
+                        System.Diagnostics.Process convertFlv = new System.Diagnostics.Process();
+                        convertFlv.StartInfo
                             = new System.Diagnostics.ProcessStartInfo
                                 (@"c:\Program Files\WinFF\ffmpeg.exe", " -i "
                             + "\"" + sCurrentRecordingFileName + "\""
@@ -108,17 +109,38 @@ namespace CaptureTestConsole
                             + " -ab 128k "
                             + " -y "
                             + "\"" + sFlvOutputName + "\"");
-                        convert.EnableRaisingEvents = true;
-                        convert.Exited += new EventHandler(delegate(object sender, EventArgs e)
+                        convertFlv.EnableRaisingEvents = true;
+                        convertFlv.Exited += new EventHandler(delegate(object sender, EventArgs e)
                         {
                             //droebit, vtvirtavt FLV-s chaceris morchenistanave
-                            FTPUploader upl = new FTPUploader(sFlvOutputName);
-                            upl.UploadFileToFTP();
+                            FTPUploader uplFlv = new FTPUploader(sFlvOutputName);
+                            uplFlv.UploadFileToFTP();
                             //Thread thrUpload = new Thread(new ThreadStart(upl.UploadFileToFTP));
                             //thrUpload.SetApartmentState(ApartmentState.STA);
                             //thrUpload.Start();
+                            //////////////// CONVERT & UPLOAD .JPG WHEN .FLV is done
+                            string sJpegOutputName = sCurrentRecordingFileName.Substring(0, sCurrentRecordingFileName.LastIndexOf(".")) + ".jpg";
+                            System.Diagnostics.Process convertJpeg = new System.Diagnostics.Process();
+                            convertJpeg.StartInfo
+                                = new System.Diagnostics.ProcessStartInfo
+                                    (@"c:\Program Files\WinFF\ffmpeg.exe", " -i "
+                                + "\"" + sFlvOutputName + "\""
+                                + " -vframes 1 "
+                                + " -ss 00:00:06 "
+                                + " -f image2 "
+                                + "\"" + sJpegOutputName + "\"");
+                            convertJpeg.EnableRaisingEvents = true;
+                            convertJpeg.Exited += new EventHandler(delegate(object senderJpeg, EventArgs eJpeg)
+                            {
+                                //droebit, vtvirtavt JPG-s chaceris morchenistanave
+                                FTPUploader uplJpeg = new FTPUploader(sJpegOutputName);
+                                uplJpeg.UploadFileToFTP();
+                            });
+                            //
+                            convertJpeg.Start();
                         });
-                        convert.Start();
+                        convertFlv.Start();
+                        //end
                     }
                     //
                 }
