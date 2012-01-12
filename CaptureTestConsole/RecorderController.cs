@@ -189,6 +189,7 @@ namespace CaptureTestConsole
         }
 
         bool fDilasAvtomaturiChacera = false;
+        bool fMidisDatabasedanChacera = false;
         DateTime dtLastAvtomaturiChacerisDro = DateTime.Now;
 
         private void RecorderController_Load(object sender, EventArgs e)
@@ -210,7 +211,8 @@ namespace CaptureTestConsole
                 string sAxaliGadacemisSaxeli;
                 DateTime dtAxaliGadacemisDackebisDro;
                 if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
-                    && false == (dtAxaliGadacemisDackebisDro.Hour < 4 && DateTime.Now.Hour >= 7))
+                    && false == (dtAxaliGadacemisDackebisDro.Hour < 4 && DateTime.Now.Hour >= 7)
+                    && false == fMidisDatabasedanChacera)
                 {
                     //
                     string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
@@ -225,6 +227,7 @@ namespace CaptureTestConsole
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
                     //
                     fDilasAvtomaturiChacera = false;
+                    fMidisDatabasedanChacera = false;
                     //
                 }
                 else if (true == isThereGadacemebiForNow(sGadacemisSaxeliLastTime, out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
@@ -241,6 +244,7 @@ namespace CaptureTestConsole
                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sGadacemaName, dtAxaliGadacemisDackebisDro));
                     //
                     fDilasAvtomaturiChacera = false;
+                    fMidisDatabasedanChacera = true;
                     //
                 }
                 else
@@ -263,9 +267,9 @@ namespace CaptureTestConsole
                                 //VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
                             }
                             //
-                            Console.WriteLine("Free Memory: {0} Megabytes.", GetFreeMemory());
                             if (GetFreeMemory() < 500)
                             {
+                                Console.WriteLine("Low Memory: {0} Megabytes. Restarting recording. ", GetFreeMemory());
                                 VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
                             }
                             else
@@ -276,6 +280,7 @@ namespace CaptureTestConsole
                                     //stop & start recording
                                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
                                     fDilasAvtomaturiChacera = true;
+                                    fMidisDatabasedanChacera = false;
                                     dtLastAvtomaturiChacerisDro = DateTime.Now;
                                     Console.WriteLine("Avtomaturma chaceram daimaxsovra ertsaatiani faili da agrdzelebs shemdegis chaceras.");
                                 }
@@ -288,6 +293,7 @@ namespace CaptureTestConsole
                             //stop & start recording
                             VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
                             fDilasAvtomaturiChacera = true;
+                            fMidisDatabasedanChacera = false;
                             dtLastAvtomaturiChacerisDro = DateTime.Now;
                             Console.WriteLine("Vrtavt chaceras avtomaturad. ");
                         }
