@@ -35,7 +35,7 @@ namespace ArchivingDatabaseManager
             dgvDgisPrograma.Enabled = false;
             DateTime dtSel = dttChooseDay.Value;
             MySqlCommand cmdLoadDay
-                = new MySqlCommand("SELECT dttStartTime, dttEndTime, sGadacemisSaxeli, fUseOnlyForName "
+                = new MySqlCommand("SELECT TIME(dttStartTime), TIME(dttEndTime), sGadacemisSaxeli, fUseOnlyForName "
                                     + " FROM gadacema "
                                     + " WHERE DATE(dttStartTime) = '"
                                     + dtSel.Year.ToString() + "-"
@@ -53,8 +53,10 @@ namespace ArchivingDatabaseManager
                 string dbsGadacemisSaxeli = rdr[2].ToString();
                 int dbfUseOnlyForName = Int32.Parse(rdr[3].ToString());
                 dgvDgisPrograma.Rows.Add(new object[]{
-                      dbdttStartTime.ToString(@"dd-MM-yyyy HH:mm:ss", CultureProvider)
-                    , dbdttEndTime.ToString(@"dd-MM-yyyy HH:mm:ss", CultureProvider)
+                    //  dbdttStartTime.ToString(@"dd-MM-yyyy HH:mm:ss", CultureProvider)
+                    //, dbdttEndTime.ToString(@"dd-MM-yyyy HH:mm:ss", CultureProvider)
+                      dbdttStartTime.ToString(@"HH:mm:ss", CultureProvider)
+                    , dbdttEndTime.ToString(@"HH:mm:ss", CultureProvider)
                     , dbsGadacemisSaxeli
                     , dbfUseOnlyForName
                 });
@@ -83,10 +85,10 @@ namespace ArchivingDatabaseManager
                 if(false == xRow.IsNewRow){
                 try
                 {
-                    DateTime xStartTime = DateTime.ParseExact(xRow.Cells[0].Value.ToString(), @"dd-MM-yyyy HH:mm:ss", CultureProvider);
-                    DateTime xEndTime = DateTime.ParseExact(xRow.Cells[1].Value.ToString(), @"dd-MM-yyyy HH:mm:ss", CultureProvider);
+                    DateTime xStartTime = DateTime.ParseExact(xRow.Cells[0].Value.ToString(), @"HH:mm:ss"/*@"dd-MM-yyyy HH:mm:ss"*/, CultureProvider);
+                    DateTime xEndTime = DateTime.ParseExact(xRow.Cells[1].Value.ToString(), @"HH:mm:ss"/*@"dd-MM-yyyy HH:mm:ss"*/, CultureProvider);
                     string xGadacemisSaxeli = xRow.Cells[2].Value.ToString();
-                    string xUseOnlyForName = xRow.Cells[3].Value.ToString();
+                    string xUseOnlyForName = (xRow.Cells[3].Value ?? "False").ToString();
                     foreach (char invalidChar in Path.GetInvalidFileNameChars())
                     {
                         xGadacemisSaxeli = xGadacemisSaxeli.Replace(invalidChar.ToString(), "");
@@ -100,8 +102,10 @@ namespace ArchivingDatabaseManager
                             + "  VALUES "
                             + " ( "
                             + " '" + xGadacemisSaxeli + "', "
-                            + " '" + xStartTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
-                            + " '" + xEndTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
+                            //+ " '" + xStartTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
+                            + " '" + dttChooseDay.Value.ToString(@"yyyy-MM-dd", CultureProvider) + " " + xStartTime.ToString(@"HH:mm:ss", CultureProvider) + "', "
+                            //+ " '" + xEndTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
+                            + " '" + dttChooseDay.Value.ToString(@"yyyy-MM-dd", CultureProvider) + " " + xEndTime.ToString(@"HH:mm:ss", CultureProvider) + "', "
                             + " '" + (("True"==xUseOnlyForName.ToString())?1:0) + "' "
                             + ");"
                         , sqlConn, transactionUpdateDay);

@@ -156,11 +156,12 @@ namespace CaptureTestConsole
         /// <param name="GadacemisSaxeli"></param>
         /// <param name="dttStartTime"></param>
         /// <returns></returns>
-        public static bool isThereGadacemebiForNow(string sNowPlaying, out string GadacemisSaxeli, out DateTime dttStartTime)
+        public static bool isThereGadacemebiForNow(string sNowPlaying, out string GadacemisSaxeli, out DateTime dttStartTime, out DateTime dttEndTime)
         {
             bool recordsFound = false;
             GadacemisSaxeli = "";
             dttStartTime = DateTime.Now;
+            dttEndTime = DateTime.Now;
             //
             MySqlCommand select = new MySqlCommand("SELECT * FROM Gadacema WHERE dttStartTime < NOW() "
                                                     + " AND dttEndTime > NOW() "
@@ -175,6 +176,7 @@ namespace CaptureTestConsole
                     recordsFound = true;
                     GadacemisSaxeli = (string)reader["sGadacemisSaxeli"];
                     dttStartTime = (DateTime)reader["dttStartTime"];
+                    dttEndTime = (DateTime)reader["dttEndTime"];
                     //dttEndTime = (DateTime)reader["dttEndTime"];
                 }
                 break;
@@ -210,9 +212,10 @@ namespace CaptureTestConsole
                 }
                 string sAxaliGadacemisSaxeli;
                 DateTime dtAxaliGadacemisDackebisDro;
+                DateTime dtAxaliGadacemisDamtavrebisDro = DateTime.Now;//assign dummy
                 if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
                     && false == (dtAxaliGadacemisDackebisDro.Hour < 4 && DateTime.Now.Hour >= 7)
-                    && false == fMidisDatabasedanChacera)
+                    && false == (true == fMidisDatabasedanChacera && DateTime.Now < dtAxaliGadacemisDamtavrebisDro))
                 {
                     //
                     string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
@@ -230,7 +233,7 @@ namespace CaptureTestConsole
                     fMidisDatabasedanChacera = false;
                     //
                 }
-                else if (true == isThereGadacemebiForNow(sGadacemisSaxeliLastTime, out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
+                else if (true == isThereGadacemebiForNow(sGadacemisSaxeliLastTime, out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro, out dtAxaliGadacemisDamtavrebisDro)
                     && sLastDatabaseOrCSVGadacemaName != sAxaliGadacemisSaxeli)
                 {
                     //
