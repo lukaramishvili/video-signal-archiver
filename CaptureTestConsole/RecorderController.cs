@@ -255,7 +255,7 @@ namespace CaptureTestConsole
                     //record automatically from 7:00 AM if neither CSV or db gadacemebi are available
                     //if ((DateTime.Now.Hour >= 7) && (DateTime.Now.Hour < 12))
                     //AXALI: yoveltvis ganaaxlos chacera, roca naxavs ro gacherebulia
-                    if (true)
+                    if (true && false == (true == fMidisDatabasedanChacera && DateTime.Now < dtAxaliGadacemisDamtavrebisDro))
                     {
                         //if it's between 7:00AM and 8:00AM and the program has already started automated recording
                         if (VideoCaptureController.fIsRecording())
