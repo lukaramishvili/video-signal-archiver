@@ -199,7 +199,7 @@ namespace CaptureTestConsole
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             ////VideoCaptureController capturer = new VideoCaptureController();
             //
-            System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3000);
+            System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(800);
             string sLastDatabaseOrCSVGadacemaName = "";
 
             timerResetCheckOrNot.Elapsed += delegate(object senderTimer, ElapsedEventArgs eTimer)
@@ -214,8 +214,8 @@ namespace CaptureTestConsole
                 DateTime dtAxaliGadacemisDackebisDro;
                 DateTime dtAxaliGadacemisDamtavrebisDro = DateTime.Now;//assign dummy
                 if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
-                    && false == (dtAxaliGadacemisDackebisDro.Hour < 4 && DateTime.Now.Hour >= 7)
-                    && false == (true == fMidisDatabasedanChacera && DateTime.Now < dtAxaliGadacemisDamtavrebisDro))
+                    && false == (dtAxaliGadacemisDackebisDro.Hour < 4 && DateTime.Now.Hour >= 7)//dont record last night's shows when now is morning
+                    && false == fMidisDatabasedanChacera)
                 {
                     //
                     string sGadacemaName = (0 < sAxaliGadacemisSaxeli.IndexOf("_"))
@@ -252,55 +252,62 @@ namespace CaptureTestConsole
                 }
                 else
                 {
-                    //record automatically from 7:00 AM if neither CSV or db gadacemebi are available
-                    //if ((DateTime.Now.Hour >= 7) && (DateTime.Now.Hour < 12))
-                    //AXALI: yoveltvis ganaaxlos chacera, roca naxavs ro gacherebulia
-                    if (true && false == (true == fMidisDatabasedanChacera && DateTime.Now < dtAxaliGadacemisDamtavrebisDro))
+                    //tu am cutas vicert database-dan da dro gauvida, gavacherot
+                    if (true == fMidisDatabasedanChacera && DateTime.Now >= dtAxaliGadacemisDamtavrebisDro)
                     {
-                        //if it's between 7:00AM and 8:00AM and the program has already started automated recording
-                        if (VideoCaptureController.fIsRecording())
+                        VideoCaptureController.StopRecording();
+                        fDilasAvtomaturiChacera = false;
+                        fMidisDatabasedanChacera = false;
+                    }
+                    else
+                    {
+                        //yoveltvis ganaaxlos chacera, roca naxavs ro gacherebulia
+                        if (false == (true == fMidisDatabasedanChacera && DateTime.Now < dtAxaliGadacemisDamtavrebisDro))
                         {
-                            //TODO: or predict memory scarciness with MemoryFailPoint Class
-                            try
+                            //if it's between 7:00AM and 8:00AM and the program has already started automated recording
+                            if (VideoCaptureController.fIsRecording())
                             {
-                                MemoryFailPoint mfp = new MemoryFailPoint(500);
-                            }
-                            catch (InsufficientMemoryException)
-                            {
-                                //VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
-                            }
-                            //
-                            if (GetFreeMemory() < 500)
-                            {
-                                Console.WriteLine("Low Memory: {0} Megabytes. Restarting recording. ", GetFreeMemory());
-                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
-                            }
-                            else
-                            {
-                                //tu dilit avtomaturi chaceraa chartuli da ert saatze metia chacerili, gackvitos chacera da tavidan daickos
-                                if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Minutes > 30)
+                                //TODO: or predict memory scarciness with MemoryFailPoint Class
+                                try
                                 {
-                                    //stop & start recording
-                                    VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
-                                    fDilasAvtomaturiChacera = true;
-                                    fMidisDatabasedanChacera = false;
-                                    dtLastAvtomaturiChacerisDro = DateTime.Now;
-                                    Console.WriteLine("Avtomaturma chaceram daimaxsovra ertsaatiani faili da agrdzelebs shemdegis chaceras.");
+                                    MemoryFailPoint mfp = new MemoryFailPoint(500);
+                                }
+                                catch (InsufficientMemoryException)
+                                {
+                                    //VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
+                                }
+                                //
+                                if (GetFreeMemory() < 500)
+                                {
+                                    Console.WriteLine("Low Memory: {0} Megabytes. Restarting recording. ", GetFreeMemory());
+                                    VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
+                                }
+                                else
+                                {
+                                    //tu dilit avtomaturi chaceraa chartuli da ert saatze metia chacerili, gackvitos chacera da tavidan daickos
+                                    if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Minutes > 30)
+                                    {
+                                        //stop & start recording
+                                        VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
+                                        fDilasAvtomaturiChacera = true;
+                                        fMidisDatabasedanChacera = false;
+                                        dtLastAvtomaturiChacerisDro = DateTime.Now;
+                                        Console.WriteLine("Avtomaturma chaceram daimaxsovra ertsaatiani faili da agrdzelebs shemdegis chaceras.");
+                                    }
                                 }
                             }
+                            //AXALI: roca gacherebulia da csv/db-shi axali chanaceri ar aris
+                            else
+                            {
+                                //stop & start recording
+                                VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
+                                fDilasAvtomaturiChacera = true;
+                                fMidisDatabasedanChacera = false;
+                                dtLastAvtomaturiChacerisDro = DateTime.Now;
+                                Console.WriteLine("Vrtavt chaceras avtomaturad. ");
+                            }
+                            //
                         }
-                        //else it's between 7:00AM and 8:00 AM without CSV or db and the program should start recording
-                        //AXALI: roca gacherebulia da csv/db-shi axali chanaceri ar aris
-                        else
-                        {
-                            //stop & start recording
-                            VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
-                            fDilasAvtomaturiChacera = true;
-                            fMidisDatabasedanChacera = false;
-                            dtLastAvtomaturiChacerisDro = DateTime.Now;
-                            Console.WriteLine("Vrtavt chaceras avtomaturad. ");
-                        }
-                        //
                     }
                 }
             };
