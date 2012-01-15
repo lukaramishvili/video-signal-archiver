@@ -196,6 +196,9 @@ namespace CaptureTestConsole
 
         private void RecorderController_Load(object sender, EventArgs e)
         {
+            //test each codec recording
+            //VideoCaptureController.SaveTestCodecFiles(); return;
+            //
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             ////VideoCaptureController capturer = new VideoCaptureController();
             //

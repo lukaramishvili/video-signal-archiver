@@ -27,6 +27,7 @@ namespace CaptureTestConsole
             VideoCaptureController.StopRecording();
             //
             capture = new Capture(filters.VideoInputDevices[0], null);
+            //capture.FrameSize = new System.Drawing.Size(360, 288);
             capture.CaptureComplete += new EventHandler(OnCaptureComplete);
             capture.Filename = sFileName;
             try
@@ -156,6 +157,38 @@ namespace CaptureTestConsole
                 }
             }
             //
+        }
+
+        public static void SaveTestCodecFiles()
+        {
+            DirectX.Capture.Filters arrF = new Filters();
+            int i = 0;
+            System.Timers.Timer t = new System.Timers.Timer(10000);
+            t.Elapsed += new ElapsedEventHandler(delegate(object sender, ElapsedEventArgs e)
+            {
+                if (null != capture && !capture.Stopped)
+                {
+                    capture.Stop();
+                }
+                if (i >= arrF.VideoCompressors.Count)
+                {
+                    t.Stop();
+                    Console.WriteLine("codec test complete");
+                    return;
+                }
+                capture = new Capture(filters.VideoInputDevices[0], null);
+                capture.VideoCompressor = arrF.VideoCompressors[i];
+                //capture.FrameSize = new System.Drawing.Size(360, 288);
+
+                if (!Directory.Exists(@"V:\codecs"))
+                {
+                    Directory.CreateDirectory(@"V:\codecs");
+                }
+                StartRecording(@"V:\codecs\" + "index-" + i + "-" + arrF.VideoCompressors[i].Name + ".avi");
+                //
+                i++;
+            });
+            t.Start();
         }
     }
 
