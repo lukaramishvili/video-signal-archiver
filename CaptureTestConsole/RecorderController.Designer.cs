@@ -53,7 +53,7 @@
             this.tabContainer.Location = new System.Drawing.Point(0, 0);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
-            this.tabContainer.Size = new System.Drawing.Size(1044, 623);
+            this.tabContainer.Size = new System.Drawing.Size(185, 209);
             this.tabContainer.TabIndex = 4;
             // 
             // tab_recorder
@@ -66,7 +66,7 @@
             this.tab_recorder.Location = new System.Drawing.Point(4, 22);
             this.tab_recorder.Name = "tab_recorder";
             this.tab_recorder.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_recorder.Size = new System.Drawing.Size(1036, 597);
+            this.tab_recorder.Size = new System.Drawing.Size(177, 183);
             this.tab_recorder.TabIndex = 0;
             this.tab_recorder.Text = "ვიდეოსიგნალი";
             this.tab_recorder.UseVisualStyleBackColor = true;
@@ -113,6 +113,7 @@
             this.gpboxAxaliGadacema.TabIndex = 4;
             this.gpboxAxaliGadacema.TabStop = false;
             this.gpboxAxaliGadacema.Text = "შემდეგი გადაცემის ჩაწერის დაწყება";
+            this.gpboxAxaliGadacema.Visible = false;
             // 
             // btn_stop
             // 
@@ -155,7 +156,7 @@
             // green_light
             // 
             this.green_light.Image = global::CaptureTestConsole.Properties.Resources.green_light_still;
-            this.green_light.Location = new System.Drawing.Point(47, 132);
+            this.green_light.Location = new System.Drawing.Point(44, 48);
             this.green_light.Name = "green_light";
             this.green_light.Size = new System.Drawing.Size(88, 91);
             this.green_light.TabIndex = 2;
@@ -171,9 +172,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 623);
+            this.ClientSize = new System.Drawing.Size(185, 209);
             this.Controls.Add(this.tabContainer);
             this.Name = "RecorderController";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Video Recorder Controller";
             this.Load += new System.EventHandler(this.RecorderController_Load);
             this.tabContainer.ResumeLayout(false);

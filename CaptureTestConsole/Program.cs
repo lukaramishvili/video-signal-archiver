@@ -112,6 +112,16 @@ namespace CaptureTestConsole
                         convertFlv.EnableRaisingEvents = true;
                         convertFlv.Exited += new EventHandler(delegate(object sender, EventArgs e)
                         {
+                            if (convertFlv.ExitCode > 0)
+                            {
+                                //if ffmpeg failed, then there will be no flv/jpg and we won't delete avi or try to upload flv/jpeg
+                                Console.WriteLine("Konvertirebisas moxda shecdoma {0}.", convertFlv.ExitCode);
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Konvertireba dasrulda shedegit {0}.", convertFlv.ExitCode);
+                            }
                             //droebit, vtvirtavt FLV-s chaceris morchenistanave
                             FTPUploader uplFlv = new FTPUploader(sFlvOutputName);
                             uplFlv.UploadFileToFTP();
