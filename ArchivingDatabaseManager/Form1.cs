@@ -65,11 +65,11 @@ namespace ArchivingDatabaseManager
             dgvDgisPrograma.Enabled = true;
         }
 
-        public bool SaveChosenDayToDatabase()
+        public bool SaveChosenDayToDatabase(DateTime dtSel)
         {
             bool retVal = true;
             //
-            DateTime dtSel = dttChooseDay.Value;
+            //DateTime dtSel = dttChooseDay.Value;
             MySqlTransaction transactionUpdateDay = sqlConn.BeginTransaction();
             //
             MySqlCommand removeOlds
@@ -103,9 +103,9 @@ namespace ArchivingDatabaseManager
                             + " ( "
                             + " '" + xGadacemisSaxeli + "', "
                             //+ " '" + xStartTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
-                            + " '" + dttChooseDay.Value.ToString(@"yyyy-MM-dd", CultureProvider) + " " + xStartTime.ToString(@"HH:mm:ss", CultureProvider) + "', "
+                            + " '" + dtSel.ToString(@"yyyy-MM-dd", CultureProvider) + " " + xStartTime.ToString(@"HH:mm:ss", CultureProvider) + "', "
                             //+ " '" + xEndTime.ToString(@"yyyy-MM-dd HH:mm:ss", CultureProvider) + "', "
-                            + " '" + dttChooseDay.Value.ToString(@"yyyy-MM-dd", CultureProvider) + " " + xEndTime.ToString(@"HH:mm:ss", CultureProvider) + "', "
+                            + " '" + dtSel.ToString(@"yyyy-MM-dd", CultureProvider) + " " + xEndTime.ToString(@"HH:mm:ss", CultureProvider) + "', "
                             + " '" + (("True"==xUseOnlyForName.ToString())?1:0) + "' "
                             + ");"
                         , sqlConn, transactionUpdateDay);
@@ -145,7 +145,7 @@ namespace ArchivingDatabaseManager
 
         private void btnSaveGadacemebiToDatabase_Click(object sender, EventArgs e)
         {
-            if (true == SaveChosenDayToDatabase())
+            if (true == SaveChosenDayToDatabase(dttChooseDay.Value))
             {
                 MessageBox.Show("გადაცემების სიის მონაცემთა ბაზაში შენახვა წარმატებით დასრულდა!");
             }
@@ -165,6 +165,19 @@ namespace ArchivingDatabaseManager
         void Application_ApplicationExit(object sender, EventArgs e)
         {
             sqlConn.Close();
+        }
+
+        private void btnCopyToTomorrow_Click(object sender, EventArgs e)
+        {
+
+            if (true == SaveChosenDayToDatabase(dttChooseDay.Value.AddDays(1)))
+            {
+                MessageBox.Show("გადაცემების სიის მონაცემთა ბაზაში შენახვა წარმატებით დასრულდა!");
+            }
+            else
+            {
+                MessageBox.Show("მონაცემების შენახვა არ მოხერხდა. გთხოვთ გაასწოროთ შეცდომები და სცადოთ თავიდან!");
+            }
         }
     }
 }

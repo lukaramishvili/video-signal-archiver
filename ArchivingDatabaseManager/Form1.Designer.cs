@@ -31,17 +31,19 @@
             this.panel_main = new System.Windows.Forms.Panel();
             this.btnSaveGadacemebiToDatabase = new System.Windows.Forms.Button();
             this.dgvDgisPrograma = new System.Windows.Forms.DataGridView();
-            this.dttChooseDay = new System.Windows.Forms.DateTimePicker();
             this.colStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGadacemisSaxeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOnlyForName = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dttChooseDay = new System.Windows.Forms.DateTimePicker();
+            this.btnCopyToTomorrow = new System.Windows.Forms.Button();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDgisPrograma)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_main
             // 
+            this.panel_main.Controls.Add(this.btnCopyToTomorrow);
             this.panel_main.Controls.Add(this.btnSaveGadacemebiToDatabase);
             this.panel_main.Controls.Add(this.dgvDgisPrograma);
             this.panel_main.Controls.Add(this.dttChooseDay);
@@ -77,14 +79,6 @@
             this.dgvDgisPrograma.Size = new System.Drawing.Size(806, 515);
             this.dgvDgisPrograma.TabIndex = 10;
             // 
-            // dttChooseDay
-            // 
-            this.dttChooseDay.Location = new System.Drawing.Point(6, 11);
-            this.dttChooseDay.Name = "dttChooseDay";
-            this.dttChooseDay.Size = new System.Drawing.Size(200, 20);
-            this.dttChooseDay.TabIndex = 9;
-            this.dttChooseDay.ValueChanged += new System.EventHandler(this.dttChooseDay_ValueChanged);
-            // 
             // colStartTime
             // 
             this.colStartTime.HeaderText = "დაწყების დრო";
@@ -108,6 +102,25 @@
             this.colOnlyForName.HeaderText = "გამოიყენება მხოლოდ სახელისთვის";
             this.colOnlyForName.Name = "colOnlyForName";
             this.colOnlyForName.Width = 200;
+            // 
+            // dttChooseDay
+            // 
+            this.dttChooseDay.Location = new System.Drawing.Point(6, 11);
+            this.dttChooseDay.Name = "dttChooseDay";
+            this.dttChooseDay.Size = new System.Drawing.Size(200, 20);
+            this.dttChooseDay.TabIndex = 9;
+            this.dttChooseDay.ValueChanged += new System.EventHandler(this.dttChooseDay_ValueChanged);
+            // 
+            // btnCopyToTomorrow
+            // 
+            this.btnCopyToTomorrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopyToTomorrow.Location = new System.Drawing.Point(386, 9);
+            this.btnCopyToTomorrow.Name = "btnCopyToTomorrow";
+            this.btnCopyToTomorrow.Size = new System.Drawing.Size(157, 23);
+            this.btnCopyToTomorrow.TabIndex = 12;
+            this.btnCopyToTomorrow.Text = "ხვალისთვის კოპირება";
+            this.btnCopyToTomorrow.UseVisualStyleBackColor = true;
+            this.btnCopyToTomorrow.Click += new System.EventHandler(this.btnCopyToTomorrow_Click);
             // 
             // frmGadacemebisMartva
             // 
@@ -135,6 +148,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEndTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGadacemisSaxeli;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colOnlyForName;
+        private System.Windows.Forms.Button btnCopyToTomorrow;
     }
 }
 
