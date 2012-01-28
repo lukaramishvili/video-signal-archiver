@@ -3,3 +3,8 @@ D:\project\CaptureTestConsole\Archiving\DirectX.Capture\bin\Release\DirectX.Capt
 D:\project\CaptureTestConsole\Archiving\DirectX.Capture\bin\Release\DShowNET.dll
 D:\project\CaptureTestConsole\Archiving\DirectX.Capture\obj\Release\ResolveAssemblyReference.cache
 D:\project\CaptureTestConsole\Archiving\DirectX.Capture\obj\Release\DirectX.Capture.dll
+D:\project\CaptureTestConsole\Archiving-clone\DirectX.Capture\bin\Release\DirectX.Capture.dll
+D:\project\CaptureTestConsole\Archiving-clone\DirectX.Capture\bin\Release\DirectX.Capture.xml
+D:\project\CaptureTestConsole\Archiving-clone\DirectX.Capture\bin\Release\DShowNET.dll
+D:\project\CaptureTestConsole\Archiving-clone\DirectX.Capture\obj\Release\ResolveAssemblyReference.cache
+D:\project\CaptureTestConsole\Archiving-clone\DirectX.Capture\obj\Release\DirectX.Capture.dll
