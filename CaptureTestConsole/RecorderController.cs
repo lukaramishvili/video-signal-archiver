@@ -202,7 +202,7 @@ namespace CaptureTestConsole
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             ////VideoCaptureController capturer = new VideoCaptureController();
             //
-            System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(800);
+            System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3500);
             string sLastDatabaseOrCSVGadacemaName = "";
 
             timerResetCheckOrNot.Elapsed += delegate(object senderTimer, ElapsedEventArgs eTimer)
@@ -284,14 +284,21 @@ namespace CaptureTestConsole
                                 {
                                     Console.WriteLine("Low Memory: {0} Megabytes. Restarting recording. ", GetFreeMemory());
                                     VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination(sLastDatabaseOrCSVGadacemaName, DateTime.Now));
+                                    dtAxaliGadacemisDackebisDro = DateTime.Now;
                                 }
                                 else
                                 {
                                     //tu dilit avtomaturi chaceraa chartuli da ert saatze metia chacerili, gackvitos chacera da tavidan daickos
-                                    if ((true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Minutes > 30)
+                                    if (
+                                        (true == fDilasAvtomaturiChacera) && DateTime.Now.Subtract(dtLastAvtomaturiChacerisDro).Minutes > 30
+                                        ||
+                                        /////////////////////////// !!!!!!!!!!!: always split to 30 minute files instead of only at morning
+                                        DateTime.Now.Subtract(dtAxaliGadacemisDackebisDro).Minutes > 30
+                                        )
                                     {
                                         //stop & start recording
                                         VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
+                                        dtAxaliGadacemisDackebisDro = DateTime.Now;
                                         fDilasAvtomaturiChacera = true;
                                         fMidisDatabasedanChacera = false;
                                         dtLastAvtomaturiChacerisDro = DateTime.Now;
@@ -304,12 +311,17 @@ namespace CaptureTestConsole
                             {
                                 //stop & start recording
                                 VideoCaptureController.StartRecording(sPrepareAndReturnFileDestination("autorecording", DateTime.Now));
+                                dtAxaliGadacemisDackebisDro = DateTime.Now;
                                 fDilasAvtomaturiChacera = true;
                                 fMidisDatabasedanChacera = false;
                                 dtLastAvtomaturiChacerisDro = DateTime.Now;
                                 Console.WriteLine("Vrtavt chaceras avtomaturad. ");
                             }
                             //
+                        }
+                        else
+                        {
+                            Console.WriteLine("{0}, ar vicert avtomaturad imitom rom bazidan midis chacera. ", DateTime.Now);
                         }
                     }
                 }
@@ -324,6 +336,7 @@ namespace CaptureTestConsole
 
         void Application_ApplicationExit(object sender, EventArgs e)
         {
+            VideoCaptureController.StopRecording();
             sqlConn.Close();
         }
 

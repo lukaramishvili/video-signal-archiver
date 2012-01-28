@@ -113,7 +113,7 @@ namespace CaptureTestConsole
                         convertFlv.EnableRaisingEvents = true;
                         convertFlv.Exited += new EventHandler(delegate(object sender, EventArgs e)
                         {
-                            if (convertFlv.ExitCode > 0)
+                            if (convertFlv.ExitCode != 0)
                             {
                                 //if ffmpeg failed, then there will be no flv/jpg and we won't delete avi or try to upload flv/jpeg
                                 Console.WriteLine("Konvertirebisas moxda shecdoma {0}.", convertFlv.ExitCode);
@@ -261,6 +261,10 @@ namespace CaptureTestConsole
                 catch (IOException)
                 {
                     Console.WriteLine("Faili dakavebulia. Gtxovt scadot tavidan. ");
+                }
+                catch (System.Net.WebException)
+                {
+                    Console.WriteLine("FTP Servertan kavshirisas moxda shecdoma. ");
                 }
             }
         }
