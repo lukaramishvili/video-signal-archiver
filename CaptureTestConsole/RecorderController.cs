@@ -202,7 +202,7 @@ namespace CaptureTestConsole
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             ////VideoCaptureController capturer = new VideoCaptureController();
             //
-            System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(800);
+            System.Timers.Timer timerResetCheckOrNot = new System.Timers.Timer(3000);
             string sLastDatabaseOrCSVGadacemaName = "";
 
             timerResetCheckOrNot.Elapsed += delegate(object senderTimer, ElapsedEventArgs eTimer)
@@ -325,6 +325,7 @@ namespace CaptureTestConsole
         void Application_ApplicationExit(object sender, EventArgs e)
         {
             sqlConn.Close();
+            VideoCaptureController.StopRecording();
         }
 
         public long GetFreeMemory()
