@@ -27,7 +27,7 @@ namespace ArchivingDatabaseManager
         public static CultureInfo CultureProvider = CultureInfo.InvariantCulture;
         //
 
-        public static MySqlConnection sqlConn = new MySqlConnection("Server=92.241.90.31;Database=imedi_db;Uid=root;Pwd=hard3ord;");
+        public static MySqlConnection sqlConn = new MySqlConnection("Server=localhost;Database=imedi_db;Uid=root;Pwd=hard3ord;");
 
         public void LoadChosenDayFromDatabase()
         {
