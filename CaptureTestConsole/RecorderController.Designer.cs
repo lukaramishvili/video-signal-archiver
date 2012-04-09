@@ -40,6 +40,7 @@
             this.txtNextGadacemaName = new System.Windows.Forms.TextBox();
             this.green_light = new System.Windows.Forms.PictureBox();
             this.dlgChooseCSVFile = new System.Windows.Forms.OpenFileDialog();
+            this.chk_upload_ftp = new System.Windows.Forms.CheckBox();
             this.tabContainer.SuspendLayout();
             this.tab_recorder.SuspendLayout();
             this.gpboxAxaliGadacema.SuspendLayout();
@@ -53,11 +54,12 @@
             this.tabContainer.Location = new System.Drawing.Point(0, 0);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
-            this.tabContainer.Size = new System.Drawing.Size(185, 209);
+            this.tabContainer.Size = new System.Drawing.Size(181, 275);
             this.tabContainer.TabIndex = 4;
             // 
             // tab_recorder
             // 
+            this.tab_recorder.Controls.Add(this.chk_upload_ftp);
             this.tab_recorder.Controls.Add(this.btnChooseCSVFile);
             this.tab_recorder.Controls.Add(this.lblCSVFile);
             this.tab_recorder.Controls.Add(this.txtPathToCSV);
@@ -66,7 +68,7 @@
             this.tab_recorder.Location = new System.Drawing.Point(4, 22);
             this.tab_recorder.Name = "tab_recorder";
             this.tab_recorder.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_recorder.Size = new System.Drawing.Size(177, 183);
+            this.tab_recorder.Size = new System.Drawing.Size(173, 249);
             this.tab_recorder.TabIndex = 0;
             this.tab_recorder.Text = "ვიდეოსიგნალი";
             this.tab_recorder.UseVisualStyleBackColor = true;
@@ -168,11 +170,24 @@
             this.dlgChooseCSVFile.FileName = "openFileDialog1";
             this.dlgChooseCSVFile.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgChooseCSVFile_FileOk);
             // 
+            // chk_upload_ftp
+            // 
+            this.chk_upload_ftp.AutoSize = true;
+            this.chk_upload_ftp.Checked = true;
+            this.chk_upload_ftp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_upload_ftp.Location = new System.Drawing.Point(39, 173);
+            this.chk_upload_ftp.Name = "chk_upload_ftp";
+            this.chk_upload_ftp.Size = new System.Drawing.Size(93, 17);
+            this.chk_upload_ftp.TabIndex = 11;
+            this.chk_upload_ftp.Text = "FTP ატვირთვა";
+            this.chk_upload_ftp.UseVisualStyleBackColor = true;
+            this.chk_upload_ftp.CheckedChanged += new System.EventHandler(this.chk_upload_ftp_CheckedChanged);
+            // 
             // RecorderController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(185, 209);
+            this.ClientSize = new System.Drawing.Size(181, 275);
             this.Controls.Add(this.tabContainer);
             this.Name = "RecorderController";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -202,5 +217,6 @@
         private System.Windows.Forms.Label lblCSVFile;
         private System.Windows.Forms.TextBox txtPathToCSV;
         private System.Windows.Forms.Button btn_stop;
+        private System.Windows.Forms.CheckBox chk_upload_ftp;
     }
 }

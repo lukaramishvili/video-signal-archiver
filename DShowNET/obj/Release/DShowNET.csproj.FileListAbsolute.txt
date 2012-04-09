@@ -4,3 +4,6 @@ D:\project\CaptureTestConsole\Archiving\DShowNET\obj\Release\DShowNET.dll
 D:\project\CaptureTestConsole\Archiving-clone\DShowNET\bin\Release\DShowNET.dll
 D:\project\CaptureTestConsole\Archiving-clone\DShowNET\obj\Release\ResolveAssemblyReference.cache
 D:\project\CaptureTestConsole\Archiving-clone\DShowNET\obj\Release\DShowNET.dll
+D:\project\VideoCapture\DShowNET\bin\Release\DShowNET.dll
+D:\project\VideoCapture\DShowNET\obj\Release\ResolveAssemblyReference.cache
+D:\project\VideoCapture\DShowNET\obj\Release\DShowNET.dll

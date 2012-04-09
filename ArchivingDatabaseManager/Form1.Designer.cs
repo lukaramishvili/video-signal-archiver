@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel_main = new System.Windows.Forms.Panel();
+            this.btnCopyToTomorrow = new System.Windows.Forms.Button();
             this.btnSaveGadacemebiToDatabase = new System.Windows.Forms.Button();
             this.dgvDgisPrograma = new System.Windows.Forms.DataGridView();
             this.colStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,13 +37,14 @@
             this.colGadacemisSaxeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOnlyForName = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dttChooseDay = new System.Windows.Forms.DateTimePicker();
-            this.btnCopyToTomorrow = new System.Windows.Forms.Button();
+            this.btnCopyToNextWeek = new System.Windows.Forms.Button();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDgisPrograma)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_main
             // 
+            this.panel_main.Controls.Add(this.btnCopyToNextWeek);
             this.panel_main.Controls.Add(this.btnCopyToTomorrow);
             this.panel_main.Controls.Add(this.btnSaveGadacemebiToDatabase);
             this.panel_main.Controls.Add(this.dgvDgisPrograma);
@@ -53,6 +55,17 @@
             this.panel_main.Padding = new System.Windows.Forms.Padding(3, 40, 3, 3);
             this.panel_main.Size = new System.Drawing.Size(812, 558);
             this.panel_main.TabIndex = 0;
+            // 
+            // btnCopyToTomorrow
+            // 
+            this.btnCopyToTomorrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopyToTomorrow.Location = new System.Drawing.Point(386, 9);
+            this.btnCopyToTomorrow.Name = "btnCopyToTomorrow";
+            this.btnCopyToTomorrow.Size = new System.Drawing.Size(157, 23);
+            this.btnCopyToTomorrow.TabIndex = 12;
+            this.btnCopyToTomorrow.Text = "ხვალისთვის კოპირება";
+            this.btnCopyToTomorrow.UseVisualStyleBackColor = true;
+            this.btnCopyToTomorrow.Click += new System.EventHandler(this.btnCopyToTomorrow_Click);
             // 
             // btnSaveGadacemebiToDatabase
             // 
@@ -111,16 +124,16 @@
             this.dttChooseDay.TabIndex = 9;
             this.dttChooseDay.ValueChanged += new System.EventHandler(this.dttChooseDay_ValueChanged);
             // 
-            // btnCopyToTomorrow
+            // btnCopyToNextWeek
             // 
-            this.btnCopyToTomorrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopyToTomorrow.Location = new System.Drawing.Point(386, 9);
-            this.btnCopyToTomorrow.Name = "btnCopyToTomorrow";
-            this.btnCopyToTomorrow.Size = new System.Drawing.Size(157, 23);
-            this.btnCopyToTomorrow.TabIndex = 12;
-            this.btnCopyToTomorrow.Text = "ხვალისთვის კოპირება";
-            this.btnCopyToTomorrow.UseVisualStyleBackColor = true;
-            this.btnCopyToTomorrow.Click += new System.EventHandler(this.btnCopyToTomorrow_Click);
+            this.btnCopyToNextWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopyToNextWeek.Location = new System.Drawing.Point(563, 9);
+            this.btnCopyToNextWeek.Name = "btnCopyToNextWeek";
+            this.btnCopyToNextWeek.Size = new System.Drawing.Size(179, 23);
+            this.btnCopyToNextWeek.TabIndex = 13;
+            this.btnCopyToNextWeek.Text = "ერთი კვირისთვის კოპირება";
+            this.btnCopyToNextWeek.UseVisualStyleBackColor = true;
+            this.btnCopyToNextWeek.Click += new System.EventHandler(this.btnCopyToNextWeek_Click);
             // 
             // frmGadacemebisMartva
             // 
@@ -149,6 +162,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colGadacemisSaxeli;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colOnlyForName;
         private System.Windows.Forms.Button btnCopyToTomorrow;
+        private System.Windows.Forms.Button btnCopyToNextWeek;
     }
 }
 

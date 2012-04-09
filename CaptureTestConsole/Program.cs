@@ -123,9 +123,18 @@ namespace CaptureTestConsole
                             {
                                 Console.WriteLine("Konvertireba dasrulda shedegit {0}.", convertFlv.ExitCode);
                             }
-                            //droebit, vtvirtavt FLV-s chaceris morchenistanave
-                            FTPUploader uplFlv = new FTPUploader(sFlvOutputName);
-                            uplFlv.UploadFileToFTP();
+                            //avtvirtavt tu ara damokidebulia checkbox-is mier 
+                            //RecorderController.fUploadToFTP-shi chaceril cvladze
+                            if (RecorderController.fUploadToFTP)
+                            {
+                                //droebit, vtvirtavt FLV-s chaceris morchenistanave
+                                FTPUploader uplFlv = new FTPUploader(sFlvOutputName);
+                                uplFlv.UploadFileToFTP();
+                            }
+                            else
+                            {
+                                File.Delete(sFlvOutputName.Replace("flv", "avi"));
+                            }
                             //Thread thrUpload = new Thread(new ThreadStart(upl.UploadFileToFTP));
                             //thrUpload.SetApartmentState(ApartmentState.STA);
                             //thrUpload.Start();
@@ -143,9 +152,12 @@ namespace CaptureTestConsole
                             convertJpeg.EnableRaisingEvents = true;
                             convertJpeg.Exited += new EventHandler(delegate(object senderJpeg, EventArgs eJpeg)
                             {
-                                //droebit, vtvirtavt JPG-s chaceris morchenistanave
-                                FTPUploader uplJpeg = new FTPUploader(sJpegOutputName);
-                                uplJpeg.UploadFileToFTP();
+                                if (RecorderController.fUploadToFTP)
+                                {
+                                    //droebit, vtvirtavt JPG-s chaceris morchenistanave
+                                    FTPUploader uplJpeg = new FTPUploader(sJpegOutputName);
+                                    uplJpeg.UploadFileToFTP();
+                                }
                             });
                             //
                             convertJpeg.Start();

@@ -194,6 +194,8 @@ namespace CaptureTestConsole
         bool fMidisDatabasedanChacera = false;
         DateTime dtLastAvtomaturiChacerisDro = DateTime.Now;
 
+        public static bool fUploadToFTP = true;
+
         private void RecorderController_Load(object sender, EventArgs e)
         {
             //test each codec recording
@@ -402,6 +404,11 @@ namespace CaptureTestConsole
         {
             VideoCaptureController.StopRecording();
             fDilasAvtomaturiChacera = false;
+        }
+
+        private void chk_upload_ftp_CheckedChanged(object sender, EventArgs e)
+        {
+            fUploadToFTP = chk_upload_ftp.Checked;
         }
     }
 }

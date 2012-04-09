@@ -169,7 +169,6 @@ namespace ArchivingDatabaseManager
 
         private void btnCopyToTomorrow_Click(object sender, EventArgs e)
         {
-
             if (true == SaveChosenDayToDatabase(dttChooseDay.Value.AddDays(1)))
             {
                 MessageBox.Show("გადაცემების სიის მონაცემთა ბაზაში შენახვა წარმატებით დასრულდა!");
@@ -177,6 +176,21 @@ namespace ArchivingDatabaseManager
             else
             {
                 MessageBox.Show("მონაცემების შენახვა არ მოხერხდა. გთხოვთ გაასწოროთ შეცდომები და სცადოთ თავიდან!");
+            }
+        }
+
+        private void btnCopyToNextWeek_Click(object sender, EventArgs e)
+        {
+            for (int i = 1; i <= 7; i++)
+            {
+                if (true == SaveChosenDayToDatabase(dttChooseDay.Value.AddDays(i)))
+                {
+                    MessageBox.Show("გადაცემები შენახულია " + dttChooseDay.Value.AddDays(i).ToString() + "–სთვის!");
+                }
+                else
+                {
+                    MessageBox.Show("მონაცემების შენახვა არ მოხერხდა. გთხოვთ გაასწოროთ შეცდომები და სცადოთ თავიდან!");
+                }
             }
         }
     }
