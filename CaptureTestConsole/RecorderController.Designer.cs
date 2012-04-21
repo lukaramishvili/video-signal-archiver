@@ -30,6 +30,7 @@
         {
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.tab_recorder = new System.Windows.Forms.TabPage();
+            this.chk_upload_ftp = new System.Windows.Forms.CheckBox();
             this.btnChooseCSVFile = new System.Windows.Forms.Button();
             this.lblCSVFile = new System.Windows.Forms.Label();
             this.txtPathToCSV = new System.Windows.Forms.TextBox();
@@ -40,7 +41,7 @@
             this.txtNextGadacemaName = new System.Windows.Forms.TextBox();
             this.green_light = new System.Windows.Forms.PictureBox();
             this.dlgChooseCSVFile = new System.Windows.Forms.OpenFileDialog();
-            this.chk_upload_ftp = new System.Windows.Forms.CheckBox();
+            this.ckb_use_csv = new System.Windows.Forms.CheckBox();
             this.tabContainer.SuspendLayout();
             this.tab_recorder.SuspendLayout();
             this.gpboxAxaliGadacema.SuspendLayout();
@@ -59,6 +60,7 @@
             // 
             // tab_recorder
             // 
+            this.tab_recorder.Controls.Add(this.ckb_use_csv);
             this.tab_recorder.Controls.Add(this.chk_upload_ftp);
             this.tab_recorder.Controls.Add(this.btnChooseCSVFile);
             this.tab_recorder.Controls.Add(this.lblCSVFile);
@@ -72,6 +74,19 @@
             this.tab_recorder.TabIndex = 0;
             this.tab_recorder.Text = "ვიდეოსიგნალი";
             this.tab_recorder.UseVisualStyleBackColor = true;
+            // 
+            // chk_upload_ftp
+            // 
+            this.chk_upload_ftp.AutoSize = true;
+            this.chk_upload_ftp.Checked = true;
+            this.chk_upload_ftp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_upload_ftp.Location = new System.Drawing.Point(39, 173);
+            this.chk_upload_ftp.Name = "chk_upload_ftp";
+            this.chk_upload_ftp.Size = new System.Drawing.Size(93, 17);
+            this.chk_upload_ftp.TabIndex = 11;
+            this.chk_upload_ftp.Text = "FTP ატვირთვა";
+            this.chk_upload_ftp.UseVisualStyleBackColor = true;
+            this.chk_upload_ftp.CheckedChanged += new System.EventHandler(this.chk_upload_ftp_CheckedChanged);
             // 
             // btnChooseCSVFile
             // 
@@ -170,18 +185,16 @@
             this.dlgChooseCSVFile.FileName = "openFileDialog1";
             this.dlgChooseCSVFile.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgChooseCSVFile_FileOk);
             // 
-            // chk_upload_ftp
+            // ckb_use_csv
             // 
-            this.chk_upload_ftp.AutoSize = true;
-            this.chk_upload_ftp.Checked = true;
-            this.chk_upload_ftp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_upload_ftp.Location = new System.Drawing.Point(39, 173);
-            this.chk_upload_ftp.Name = "chk_upload_ftp";
-            this.chk_upload_ftp.Size = new System.Drawing.Size(93, 17);
-            this.chk_upload_ftp.TabIndex = 11;
-            this.chk_upload_ftp.Text = "FTP ატვირთვა";
-            this.chk_upload_ftp.UseVisualStyleBackColor = true;
-            this.chk_upload_ftp.CheckedChanged += new System.EventHandler(this.chk_upload_ftp_CheckedChanged);
+            this.ckb_use_csv.AutoSize = true;
+            this.ckb_use_csv.Location = new System.Drawing.Point(39, 205);
+            this.ckb_use_csv.Name = "ckb_use_csv";
+            this.ckb_use_csv.Size = new System.Drawing.Size(95, 17);
+            this.ckb_use_csv.TabIndex = 12;
+            this.ckb_use_csv.Text = "CSV შემოწმება";
+            this.ckb_use_csv.UseVisualStyleBackColor = true;
+            this.ckb_use_csv.CheckedChanged += new System.EventHandler(this.ckb_use_csv_CheckedChanged);
             // 
             // RecorderController
             // 
@@ -218,5 +231,6 @@
         private System.Windows.Forms.TextBox txtPathToCSV;
         private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.CheckBox chk_upload_ftp;
+        private System.Windows.Forms.CheckBox ckb_use_csv;
     }
 }

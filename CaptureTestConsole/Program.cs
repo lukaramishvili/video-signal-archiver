@@ -134,6 +134,7 @@ namespace CaptureTestConsole
                             else
                             {
                                 File.Delete(sFlvOutputName.Replace("flv", "avi"));
+                                File.Delete(sFlvOutputName.Replace("flv", "jpg"));
                             }
                             //Thread thrUpload = new Thread(new ThreadStart(upl.UploadFileToFTP));
                             //thrUpload.SetApartmentState(ApartmentState.STA);

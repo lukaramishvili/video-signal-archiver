@@ -195,6 +195,7 @@ namespace CaptureTestConsole
         DateTime dtLastAvtomaturiChacerisDro = DateTime.Now;
 
         public static bool fUploadToFTP = true;
+        public static bool fUseCSV = false;
 
         private void RecorderController_Load(object sender, EventArgs e)
         {
@@ -218,7 +219,7 @@ namespace CaptureTestConsole
                 string sAxaliGadacemisSaxeli;
                 DateTime dtAxaliGadacemisDackebisDro;
                 DateTime dtAxaliGadacemisDamtavrebisDro = DateTime.Now;//assign dummy
-                if (true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
+                if (fUseCSV && true == nextCSVResult(out sAxaliGadacemisSaxeli, out dtAxaliGadacemisDackebisDro)
                     && false == (dtAxaliGadacemisDackebisDro.Hour < 4 && DateTime.Now.Hour >= 7)//dont record last night's shows when now is morning
                     && false == fMidisDatabasedanChacera)
                 {
@@ -409,6 +410,11 @@ namespace CaptureTestConsole
         private void chk_upload_ftp_CheckedChanged(object sender, EventArgs e)
         {
             fUploadToFTP = chk_upload_ftp.Checked;
+        }
+
+        private void ckb_use_csv_CheckedChanged(object sender, EventArgs e)
+        {
+            fUseCSV = ckb_use_csv.Checked;
         }
     }
 }
