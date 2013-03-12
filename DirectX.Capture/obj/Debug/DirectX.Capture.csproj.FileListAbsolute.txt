@@ -12,3 +12,10 @@ D:\project\CaptureTestConsole\Archiving\DirectX.Capture\bin\Debug\DShowNET.pdb
 D:\project\CaptureTestConsole\Archiving\DirectX.Capture\obj\Debug\ResolveAssemblyReference.cache
 D:\project\CaptureTestConsole\Archiving\DirectX.Capture\obj\Debug\DirectX.Capture.dll
 D:\project\CaptureTestConsole\Archiving\DirectX.Capture\obj\Debug\DirectX.Capture.pdb
+D:\project\VideoCapture\DirectX.Capture\bin\Debug\DirectX.Capture.dll
+D:\project\VideoCapture\DirectX.Capture\bin\Debug\DirectX.Capture.pdb
+D:\project\VideoCapture\DirectX.Capture\bin\Debug\DShowNET.dll
+D:\project\VideoCapture\DirectX.Capture\bin\Debug\DShowNET.pdb
+D:\project\VideoCapture\DirectX.Capture\obj\Debug\ResolveAssemblyReference.cache
+D:\project\VideoCapture\DirectX.Capture\obj\Debug\DirectX.Capture.dll
+D:\project\VideoCapture\DirectX.Capture\obj\Debug\DirectX.Capture.pdb

@@ -7,3 +7,12 @@ D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Debug\G
 D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Debug\GenerateResource.write.1.tlog
 D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Debug\ArchivingDatabaseManager.exe
 D:\project\CaptureTestConsole\Archiving\ArchivingDatabaseManager\obj\x86\Debug\ArchivingDatabaseManager.pdb
+D:\project\VideoCapture\ArchivingDatabaseManager\bin\Debug\ArchivingDatabaseManager.exe
+D:\project\VideoCapture\ArchivingDatabaseManager\bin\Debug\ArchivingDatabaseManager.pdb
+D:\project\VideoCapture\ArchivingDatabaseManager\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\project\VideoCapture\ArchivingDatabaseManager\obj\x86\Debug\ArchivingDatabaseManager.frmGadacemebisMartva.resources
+D:\project\VideoCapture\ArchivingDatabaseManager\obj\x86\Debug\ArchivingDatabaseManager.Properties.Resources.resources
+D:\project\VideoCapture\ArchivingDatabaseManager\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\project\VideoCapture\ArchivingDatabaseManager\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\project\VideoCapture\ArchivingDatabaseManager\obj\x86\Debug\ArchivingDatabaseManager.exe
+D:\project\VideoCapture\ArchivingDatabaseManager\obj\x86\Debug\ArchivingDatabaseManager.pdb

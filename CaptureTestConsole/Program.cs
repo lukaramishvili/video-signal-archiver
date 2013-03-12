@@ -216,6 +216,21 @@ namespace CaptureTestConsole
 
         public void UploadFileToFTP()
         {
+            string ftpHost = "92.241.90.24";
+            string ftpUser = "vdupl";
+            string ftpPass = "z4grzlmn";
+            string ftpConfPath = "C:\\videorecorder.config";
+            if (File.Exists(ftpConfPath))
+            {
+                string[] confLines = File.ReadAllLines(ftpConfPath);
+                if (confLines.Length >= 3)
+                {
+                    ftpHost = confLines[0];
+                    ftpUser = confLines[1];
+                    ftpPass = confLines[2];
+                }
+            }
+            //
             Thread.Sleep(1000);
             if (File.Exists(sFileNameToUpload))
             {
@@ -225,7 +240,7 @@ namespace CaptureTestConsole
                 DirectoryInfo parentMonth = Directory.GetParent(parentDay.FullName);
                 DirectoryInfo parentYear = Directory.GetParent(parentMonth.FullName);
                 FtpWebRequest request
-                    = (FtpWebRequest)WebRequest.Create("ftp://92.241.90.24/videofiles/"
+                    = (FtpWebRequest)WebRequest.Create("ftp://" + ftpHost + "/videofiles/"
                     + parentYear.Name + "-"
                     + parentMonth.Name + "-"
                     + parentDay.Name + "-"
@@ -235,7 +250,7 @@ namespace CaptureTestConsole
                 request.UseBinary = true;
 
                 // This example assumes the FTP site uses anonymous logon.
-                request.Credentials = new NetworkCredential("vdupl", "z4grzlmn");
+                request.Credentials = new NetworkCredential(ftpUser, ftpPass);
 
                 // Copy the contents of the file to the request stream.
                 try
