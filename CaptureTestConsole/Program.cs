@@ -214,6 +214,28 @@ namespace CaptureTestConsole
             sFileNameToUpload = argsFileName;
         }
 
+        public void ftpEnsureDirectory(string sPath, string sUser, string sPass)
+        {
+            FtpWebRequest req = (FtpWebRequest)WebRequest.Create(sPath);
+            req.UseBinary = true;
+            req.KeepAlive = true;
+            req.UsePassive = true;
+            req.Timeout = 1000 * 3600 * 365;
+            req.ServicePoint.ConnectionLimit = 6;
+            req.ReadWriteTimeout = 1000 * 3600 * 365;
+            NetworkCredential cred = new NetworkCredential(sUser, sPass);
+            req.Credentials = cred;
+            req.Method = WebRequestMethods.Ftp.MakeDirectory;
+            try
+            {
+                FtpWebResponse response = (FtpWebResponse)req.GetResponse();
+            }
+            catch (WebException)
+            {
+                //already exists
+            }
+        }
+
         public void UploadFileToFTP()
         {
             string ftpHost = "92.241.90.24";
@@ -239,13 +261,15 @@ namespace CaptureTestConsole
                 DirectoryInfo parentDay = new DirectoryInfo(fileVideo.DirectoryName);
                 DirectoryInfo parentMonth = Directory.GetParent(parentDay.FullName);
                 DirectoryInfo parentYear = Directory.GetParent(parentMonth.FullName);
+                //ensure ftp directory exists for current day
+                ftpEnsureDirectory("ftp://" + ftpHost + "/videofiles/"
+                    + parentYear.Name + "-" + parentMonth.Name + "-" + parentDay.Name,
+                    ftpUser, ftpPass);
+                //
                 FtpWebRequest request
                     = (FtpWebRequest)WebRequest.Create("ftp://" + ftpHost + "/videofiles/"
-                    + parentYear.Name + "-"
-                    + parentMonth.Name + "-"
-                    + parentDay.Name + "-"
-                    + fileVideo.Name
-                    + "");// (");
+                    + parentYear.Name + "-" + parentMonth.Name + "-" + parentDay.Name + "/"
+                    + parentYear.Name + "-" + parentMonth.Name + "-" + parentDay.Name + "-" + fileVideo.Name + "");// (");
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.UseBinary = true;
 
