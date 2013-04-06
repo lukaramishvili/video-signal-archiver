@@ -105,7 +105,7 @@ namespace CaptureTestConsole
                                 (@"c:\Program Files\WinFF\ffmpeg.exe", " -i "
                             + "\"" + sCurrentRecordingFileName + "\""
                             + " -ar 44100 "
-                            + " -b 1250k "
+                            + " -b 2000k "
                             + " -r 25 "
                             + " -ab 128k "
                             + " -y "
