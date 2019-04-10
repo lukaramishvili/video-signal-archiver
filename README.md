@@ -1,7 +1,7 @@
 # video-signal-archiver
 > continuous high-fidelity video recorder for a TV Station [C# / WinForms / MySQL]
 
-Records continuous video signal from a video card and organizes it into a predetermined user-managed directory structure by TV Show, record time, show name etc (falls back to 1-hour chunks when this information is not available).
+Records continuous video signal from a video card and organizes it into a predetermined user-managed directory structure by TV Show, record time, show name etc (falls back to 1-hour (intuitively named) chunks when this information is not available).
 
 Best results were achieved with Blackmagic Design DeckLink cards, but any PCIe capture cards can be used.
 
