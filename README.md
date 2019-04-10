@@ -19,3 +19,5 @@ Features:
 Not implemented yet:
 * Auto-omitting TV ads – ad time on TV can be highly variable, so not even operators know when they'll start/end. Implementation would require real-time human intervention, which would defeat the whole point.
 * Post-factum Breaking News separation – requires manual file editing.
+
+*CaptureTestConsole utilizes DirectX.Capture library from Brian Low*
