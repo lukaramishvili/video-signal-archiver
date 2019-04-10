@@ -15,6 +15,7 @@ Features:
 * Multiple codec support
 * AVI / FLV container format support
 * ffmpeg integration
+* python script to add recording dates to filenames
 
 Not implemented yet:
 * Auto-omitting TV ads – ad time on TV can be highly variable, so not even operators know when they'll start/end. Implementation would require real-time human intervention, which would defeat the whole point.
