@@ -12,6 +12,9 @@ Features:
 * The admin panel can be accessed from network
 * Can upload recorded files to a remote FTP server (file sizes can be *huge*, so the server still has to be located nearby). Since the record servers have to be located in the Master Control Room where the coax cables run (and a lot of staff can't enter), this features allows for fast and easy company-wide distribution of recent recordings, as well as enabling more straightforward off-site archiving.
 * Extensive metadata about recorded content
+* Multiple codec support
+* AVI / FLV container format support
+* ffmpeg integration
 
 Not implemented yet:
 * Auto-omitting TV ads – ad time on TV can be highly variable, so not even operators know when they'll start/end. Implementation would require real-time human intervention, which would defeat the whole point.
