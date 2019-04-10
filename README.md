@@ -1,5 +1,5 @@
 # video-signal-archiver
-continuous high-fidelity video recorder for a TV Station [C# / WinForms / MySQL]
+> continuous high-fidelity video recorder for a TV Station [C# / WinForms / MySQL]
 
 Records continuous video signal from a video card and organizes it into a predetermined user-managed directory structure by TV Show, record time, show name etc (falls back to 1-hour chunks when this information is not available).
 
