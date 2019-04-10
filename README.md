@@ -7,7 +7,7 @@ Best results were achieved with Blackmagic Design DeckLink cards, but any PCIe c
 
 Features:
 * Never loses any video data that goes through the video cable
-* Dedicated Recording Console app for emergency manual intervention
+* Dedicated CaptureTestConsole app for real-time management and emergency manual intervention
 * Has a admin panel to allocate, ahead of time, which time slots will be recorded to which TV shows' files – the user can specify night-time show start/end times and **go to sleep**.
 * The admin panel can be accessed from network
 * Can upload recorded files to a remote FTP server (file sizes can be *huge*, so the server still has to be located nearby). Since the record servers have to be located in the Master Control Room where the coax cables run (and a lot of staff can't enter), this features allows for fast and easy company-wide distribution of recent recordings, as well as enabling more straightforward off-site archiving.
